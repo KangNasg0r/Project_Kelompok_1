@@ -133,7 +133,7 @@
 			</frame>
 			<image>
 				<reportElement x="437" y="9" width="113" height="117" uuid="5aec171f-6233-4f91-8906-ac92c97add3b"/>
-				<imageExpression><![CDATA["C:\\Users\\Ahmad Nur Latif P\\OneDrive\\Documents\\NetBeansProjects\\Service_Gadget\\src\\gambar\\login_logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["../gambar/login_logo.png"]]></imageExpression>
 			</image>
 			<line>
 				<reportElement x="0" y="136" width="555" height="1" uuid="7b240457-8d84-4e4a-acd8-5b8ce19012bc"/>

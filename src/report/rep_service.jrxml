@@ -35,7 +35,7 @@
 		<band height="156" splitType="Stretch">
 			<image scaleImage="RealSize" hAlign="Center" vAlign="Middle">
 				<reportElement x="425" y="18" width="129" height="121" uuid="c547a67c-7f51-4361-bfa6-35f3c0868c78"/>
-				<imageExpression><![CDATA["C:\\Users\\Ahmad Nur Latif P\\OneDrive\\Documents\\NetBeansProjects\\Service_Gadget\\src\\gambar\\login_logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["../gambar/login_logo.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement style="Title" x="39" y="10" width="377" height="95" forecolor="#000000" uuid="28bd0f88-7758-4d4c-9dce-093433085fd7"/>
