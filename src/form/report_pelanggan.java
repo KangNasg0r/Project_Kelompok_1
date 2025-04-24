@@ -14,6 +14,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 import java.util.HashMap;
+import java.io.InputStream;
 
 /**
  *
@@ -229,12 +230,21 @@ public class report_pelanggan extends javax.swing.JFrame {
             String reportPath = "/report/rep_pelanggan.jasper";
             HashMap parameters = new HashMap();
             parameters.put("DikeluarkanOlehTek", loginTeknisi); // Kirim nama sebagai parameter
+            
+            InputStream logoStream = getClass().getResourceAsStream("/gambar/login_logo.png");
+            if (logoStream != null) {
+                parameters.put("LogoImage", logoStream); // Kirim gambar sebagai parameter
+            } else {
+                JOptionPane.showMessageDialog(this, "Gambar logo tidak ditemukan di /gambar/logo_icon.png");
+                return; // Hentikan proses pencetakan jika gambar tidak ditemukan
+            }
 
             JasperPrint jp_tek = JasperFillManager.fillReport(getClass().getResourceAsStream(reportPath), parameters, conn); // Gunakan koneksi conn yang sudah ada
             JasperViewer.viewReport(jp_tek, false);
 
             rsNama.close();
             teknama.close();
+            logoStream.close();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Gagal mencetak report: " + e);

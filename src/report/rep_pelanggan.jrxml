@@ -16,6 +16,9 @@
 	<parameter name="DikeluarkanOlehTek" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
+	<parameter name="LogoImage" class="java.io.InputStream" isForPrompting="false">
+		<defaultValueExpression><![CDATA["null"]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT * FROM tb_pelanggan]]>
 	</queryString>
@@ -242,9 +245,6 @@
 					<pen lineWidth="2.0" lineStyle="Double"/>
 				</graphicElement>
 			</line>
-			<image>
-				<reportElement x="141" y="72" width="100" height="50" uuid="0577f1e8-1db8-4117-8553-71f6688d2160"/>
-			</image>
 		</band>
 	</summary>
 </jasperReport>
