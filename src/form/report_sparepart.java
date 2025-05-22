@@ -5,12 +5,12 @@
  */
 package form;
 
+
 /**
  *
  * @author Ahmad Nur Latif P
  */
 public class report_sparepart extends javax.swing.JFrame {
-
     /**
      * Creates new form report_sparepart
      */

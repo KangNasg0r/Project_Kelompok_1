@@ -8,6 +8,7 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyEvent;
+import java.io.InputStream;
 import koneksi.koneksi;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -202,7 +203,7 @@ public class report_service extends javax.swing.JFrame {
             String loginId = UserID.getIdTeknisi();
             String loginTeknisi = "";
 
-            // Ambil nama teknisi dari database berdasarkan ID yang login
+            
             String sqlNama = "SELECT nama FROM tb_login WHERE id_teknisi = ?";
             PreparedStatement teknama = conn.prepareStatement(sqlNama);
             teknama.setString(1, loginId);
@@ -211,22 +212,31 @@ public class report_service extends javax.swing.JFrame {
             if (rsNama.next()) {
                 loginTeknisi = rsNama.getString("nama");
             } else {
-                loginTeknisi = "Tidak Diketahui"; // Atau handle jika nama tidak ditemukan
+                loginTeknisi = "Tidak Diketahui";
             }
 
             String reportPath = "/report/rep_service.jasper";
             HashMap parameters = new HashMap();
-            parameters.put("teknisi", loginTeknisi); // Kirim nama sebagai parameter
+            parameters.put("teknisi", loginTeknisi);
+            
+            InputStream logo = getClass().getResourceAsStream("/gambar/menu_logo_1.png");
+            if (logo != null) {
+                parameters.put("Logo", logo);
+            } else {
+                JOptionPane.showMessageDialog(this, "Gambar logo tidak ditemukan");
+                return;
+            }
 
             JasperPrint jp_ser = JasperFillManager.fillReport(getClass().getResourceAsStream(reportPath), parameters, conn); // Gunakan koneksi conn yang sudah ada
             JasperViewer.viewReport(jp_ser, false);
 
             rsNama.close();
             teknama.close();
+            logo.close();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Gagal mencetak report: " + e);
-            e.printStackTrace(); // Penting untuk melihat detail error
+            e.printStackTrace();
         }
     }//GEN-LAST:event_bprint_serActionPerformed
 

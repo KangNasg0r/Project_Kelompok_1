@@ -215,7 +215,7 @@ public class report_pelanggan extends javax.swing.JFrame {
             String loginId = UserID.getIdTeknisi();
             String loginTeknisi = "";
             
-            // Ambil nama teknisi dari database berdasarkan ID yang login
+            
             String sqlNama = "SELECT nama FROM tb_login WHERE id_teknisi = ?";
             PreparedStatement teknama = conn.prepareStatement(sqlNama);
             teknama.setString(1, loginId);
@@ -224,19 +224,19 @@ public class report_pelanggan extends javax.swing.JFrame {
             if (rsNama.next()) {
                 loginTeknisi = rsNama.getString("nama");
             } else {
-                loginTeknisi = "Tidak Diketahui"; // Atau handle jika nama tidak ditemukan
+                loginTeknisi = "Tidak Diketahui";
             }
 
             String reportPath = "/report/rep_pelanggan.jasper";
             HashMap parameters = new HashMap();
-            parameters.put("DikeluarkanOlehTek", loginTeknisi); // Kirim nama sebagai parameter
+            parameters.put("DikeluarkanOlehTek", loginTeknisi);
             
-            InputStream logoStream = getClass().getResourceAsStream("/gambar/login_logo.png");
-            if (logoStream != null) {
-                parameters.put("LogoImage", logoStream); // Kirim gambar sebagai parameter
+            InputStream logo = getClass().getResourceAsStream("/gambar/menu_logo_1.png");
+            if (logo != null) {
+                parameters.put("LogoImage", logo);
             } else {
-                JOptionPane.showMessageDialog(this, "Gambar logo tidak ditemukan di /gambar/logo_icon.png");
-                return; // Hentikan proses pencetakan jika gambar tidak ditemukan
+                JOptionPane.showMessageDialog(this, "Gambar logo tidak ditemukan");
+                return;
             }
 
             JasperPrint jp_tek = JasperFillManager.fillReport(getClass().getResourceAsStream(reportPath), parameters, conn); // Gunakan koneksi conn yang sudah ada
@@ -244,11 +244,11 @@ public class report_pelanggan extends javax.swing.JFrame {
 
             rsNama.close();
             teknama.close();
-            logoStream.close();
+            logo.close();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Gagal mencetak report: " + e);
-            e.printStackTrace(); // Penting untuk melihat detail error
+            e.printStackTrace();
         }
     }//GEN-LAST:event_bprint_pelActionPerformed
 
