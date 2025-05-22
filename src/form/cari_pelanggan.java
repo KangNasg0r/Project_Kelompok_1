@@ -423,8 +423,6 @@ public class cari_pelanggan extends javax.swing.JFrame {
             formTransaksi.nama_pelanggan.setText(nama);
             formTransaksi.hp_pelanggan.setText(hp);
             formTransaksi.almt_pelanggan.setText(alamat);
-
-            // Tutup form cari_pelanggan setelah data dipilih
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Form transaksi pembayaran tidak ditemukan!");
