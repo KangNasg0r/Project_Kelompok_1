@@ -9,10 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import koneksi.koneksi;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  *
