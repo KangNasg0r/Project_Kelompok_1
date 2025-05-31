@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Apr 2025 pada 08.31
+-- Waktu pembuatan: 31 Bulan Mei 2025 pada 16.25
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -30,8 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `tb_aksesoris` (
   `id_aksesoris` varchar(10) NOT NULL,
   `nama_aksesoris` varchar(30) NOT NULL,
-  `harga_aksesoris` int(100) NOT NULL
+  `harga_beliAk` int(25) NOT NULL,
+  `harga_jualAk` int(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `tb_aksesoris`
+--
+
+INSERT INTO `tb_aksesoris` (`id_aksesoris`, `nama_aksesoris`, `harga_beliAk`, `harga_jualAk`) VALUES
+('A001', 'Casing Realme 16', 10000, 15000);
 
 -- --------------------------------------------------------
 
@@ -66,10 +74,16 @@ INSERT INTO `tb_login` (`id_teknisi`, `sandi`, `nama`, `jenkel`, `hp`, `alamat`)
 CREATE TABLE `tb_nota` (
   `id_nota` varchar(10) NOT NULL,
   `tanggal` date NOT NULL,
-  `id_teknisi` varchar(10) NOT NULL,
-  `id_pelanggan` varchar(10) NOT NULL,
-  `total_biaya` int(100) NOT NULL
+  `id_teknisi` varchar(15) NOT NULL,
+  `id_pelanggan` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `tb_nota`
+--
+
+INSERT INTO `tb_nota` (`id_nota`, `tanggal`, `id_teknisi`, `id_pelanggan`) VALUES
+('IN0001', '2025-05-30', 'P1', 'T01');
 
 -- --------------------------------------------------------
 
@@ -80,11 +94,20 @@ CREATE TABLE `tb_nota` (
 CREATE TABLE `tb_nota_detail` (
   `id_nota` varchar(10) NOT NULL,
   `id_item` varchar(10) NOT NULL,
-  `nama_item` varchar(30) NOT NULL,
-  `harga` int(100) NOT NULL,
-  `kuantitas` int(100) NOT NULL,
-  `subtotal` int(100) NOT NULL
+  `nama_item` varchar(50) NOT NULL,
+  `harga_beli` int(100) NOT NULL,
+  `harga_jual` int(100) NOT NULL,
+  `kuantitas` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `tb_nota_detail`
+--
+
+INSERT INTO `tb_nota_detail` (`id_nota`, `id_item`, `nama_item`, `harga_beli`, `harga_jual`, `kuantitas`) VALUES
+('IN0001', 'S01', 'Ganti Baterai Laptop', 0, 100000, 1),
+('IN0001', 'SP01', 'Baterai Laptop Vivobook 14 OLED', 500000, 1000000, 1),
+('IN0001', 'A001', 'Casing Realme 16', 10000, 15000, 5);
 
 -- --------------------------------------------------------
 
@@ -139,7 +162,8 @@ INSERT INTO `tb_service` (`id_service`, `jenis_service`, `biaya_service`) VALUES
 CREATE TABLE `tb_sparepart` (
   `kd_barang` varchar(10) NOT NULL,
   `nama_barang` varchar(200) NOT NULL,
-  `harga_barang` int(100) NOT NULL,
+  `harga_beli` int(100) NOT NULL,
+  `harga_jual` int(100) NOT NULL,
   `jenis_barang` varchar(20) NOT NULL,
   `merk_barang` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -148,9 +172,9 @@ CREATE TABLE `tb_sparepart` (
 -- Dumping data untuk tabel `tb_sparepart`
 --
 
-INSERT INTO `tb_sparepart` (`kd_barang`, `nama_barang`, `harga_barang`, `jenis_barang`, `merk_barang`) VALUES
-('B01', 'LCD Laptop Asus Vivobook Pro 14 OLED', 1000000, 'LCD', 'Asus'),
-('B02', 'Baterai Laptop Asus Vivobook Pro 14 OLED', 1600000, 'Baterai', 'Asus');
+INSERT INTO `tb_sparepart` (`kd_barang`, `nama_barang`, `harga_beli`, `harga_jual`, `jenis_barang`, `merk_barang`) VALUES
+('SP01', 'Baterai Laptop Vivobook 14 OLED', 500000, 1000000, 'Baterai', 'Asus'),
+('SP02', 'LCD Laptop Vivobook 14 OLED', 500000, 1000000, 'LCD', 'Asus');
 
 --
 -- Indexes for dumped tables
@@ -172,16 +196,7 @@ ALTER TABLE `tb_login`
 -- Indeks untuk tabel `tb_nota`
 --
 ALTER TABLE `tb_nota`
-  ADD PRIMARY KEY (`id_nota`),
-  ADD KEY `id_pelanggan` (`id_pelanggan`),
-  ADD KEY `id_teknisi` (`id_teknisi`);
-
---
--- Indeks untuk tabel `tb_nota_detail`
---
-ALTER TABLE `tb_nota_detail`
-  ADD KEY `id_nota` (`id_nota`),
-  ADD KEY `id_item` (`id_item`);
+  ADD PRIMARY KEY (`id_nota`);
 
 --
 -- Indeks untuk tabel `tb_pelanggan`
@@ -200,26 +215,6 @@ ALTER TABLE `tb_service`
 --
 ALTER TABLE `tb_sparepart`
   ADD PRIMARY KEY (`kd_barang`);
-
---
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
---
-
---
--- Ketidakleluasaan untuk tabel `tb_nota`
---
-ALTER TABLE `tb_nota`
-  ADD CONSTRAINT `tb_nota_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `tb_pelanggan` (`id_pelanggan`),
-  ADD CONSTRAINT `tb_nota_ibfk_2` FOREIGN KEY (`id_teknisi`) REFERENCES `tb_login` (`id_teknisi`);
-
---
--- Ketidakleluasaan untuk tabel `tb_nota_detail`
---
-ALTER TABLE `tb_nota_detail`
-  ADD CONSTRAINT `tb_nota_detail_ibfk_1` FOREIGN KEY (`id_nota`) REFERENCES `tb_nota` (`id_nota`),
-  ADD CONSTRAINT `tb_nota_detail_ibfk_2` FOREIGN KEY (`id_item`) REFERENCES `tb_service` (`id_service`),
-  ADD CONSTRAINT `tb_nota_detail_ibfk_3` FOREIGN KEY (`id_item`) REFERENCES `tb_sparepart` (`kd_barang`),
-  ADD CONSTRAINT `tb_nota_detail_ibfk_4` FOREIGN KEY (`id_item`) REFERENCES `tb_aksesoris` (`id_aksesoris`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
