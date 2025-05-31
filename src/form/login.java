@@ -205,7 +205,6 @@ public class login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Login Berhasil");
                 this.setVisible(false);
                 menu_utama sett = new menu_utama();
-                sett.setAkun(id_teknisi.getText(), sandi.getText()); // Kirim id_teknisi dan sandi untuk label di form menu utama
                 sett.setVisible(true);
                 sett.setLocationRelativeTo(null);
             } else {

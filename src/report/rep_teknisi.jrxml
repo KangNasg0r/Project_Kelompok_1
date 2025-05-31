@@ -131,10 +131,6 @@
 					<text><![CDATA[Data Teknisi Gadget House]]></text>
 				</staticText>
 			</frame>
-			<image>
-				<reportElement x="437" y="9" width="113" height="117" uuid="5aec171f-6233-4f91-8906-ac92c97add3b"/>
-				<imageExpression><![CDATA[this.getClass().getResourceAsStream("/gambar/login_logo.png")]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="0" y="81" width="431" height="51" uuid="5e045b87-bbca-4bc2-b155-f0d73bbf4b7c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -142,6 +138,10 @@
 				</textElement>
 				<text><![CDATA[Jl. Raya Tengah No.80, RT.6/RW.1, Gedong, Kec. Ps. Rebo, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13760, Indonesia]]></text>
 			</staticText>
+			<image>
+				<reportElement style="Title" x="452" y="0" width="103" height="95" uuid="9371e5e5-c52b-467c-8a1b-4a3bcc26e3cd"/>
+				<imageExpression><![CDATA[getClass().getResourceAsStream("/gambar/menu_logo_1.png")]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -164,21 +164,21 @@
 				<text><![CDATA[Sandi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="178" y="10" width="155" height="25" forecolor="#000000" uuid="4f515664-e2f3-4526-8a48-c01d36bec810"/>
+				<reportElement style="Column header" x="178" y="10" width="171" height="25" forecolor="#000000" uuid="4f515664-e2f3-4526-8a48-c01d36bec810"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Nama]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="333" y="10" width="111" height="25" forecolor="#000000" uuid="23fb63e8-c457-4727-b233-ff27472dc41c"/>
+				<reportElement style="Column header" x="349" y="10" width="103" height="25" forecolor="#000000" uuid="23fb63e8-c457-4727-b233-ff27472dc41c"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Jenis Kelamin]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="444" y="10" width="111" height="25" forecolor="#000000" uuid="12b99165-f791-4489-8bf3-5d53b2215c37"/>
+				<reportElement style="Column header" x="452" y="10" width="103" height="25" forecolor="#000000" uuid="12b99165-f791-4489-8bf3-5d53b2215c37"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="false"/>
 				</textElement>
@@ -217,7 +217,7 @@
 					<textFieldExpression><![CDATA[$F{sandi}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" mode="Transparent" x="178" y="0" width="144" height="18" uuid="74c4e6d2-25ab-4bcc-b392-c4ab90ac4114"/>
+					<reportElement style="Detail" positionType="Float" mode="Transparent" x="178" y="0" width="161" height="18" uuid="74c4e6d2-25ab-4bcc-b392-c4ab90ac4114"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
 						<font size="14" pdfEncoding="Cp1252"/>
 						<paragraph lineSpacing="Single"/>
@@ -225,14 +225,14 @@
 					<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="333" y="0" width="100" height="18" uuid="d987944f-b944-47af-9ff2-a14836d92b1b"/>
+					<reportElement style="Detail" positionType="Float" x="349" y="0" width="92" height="18" uuid="d987944f-b944-47af-9ff2-a14836d92b1b"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{jenkel}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="444" y="0" width="100" height="18" uuid="4db8dcdc-ec4e-4ffe-be17-df852f0d5262"/>
+					<reportElement style="Detail" positionType="Float" x="452" y="0" width="95" height="18" uuid="4db8dcdc-ec4e-4ffe-be17-df852f0d5262"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font size="14"/>
 					</textElement>

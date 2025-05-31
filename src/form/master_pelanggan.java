@@ -5,6 +5,7 @@
  */
 package form;
 
+import form_report.report_pelanggan;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

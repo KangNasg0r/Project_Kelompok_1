@@ -34,18 +34,19 @@ private Connection conn = new koneksi().connect();
     protected void kosong() {
         id_aksesoris.setText("");
         nama_aksesoris.setText("");
-        harga_aksesoris.setText("");
+        harga_beliAk.setText("");
     }
 
     protected void datatable() {
-        Object[] Baris = {"ID Aksesoris", "Nama Aksesoris", "Harga (Rp)"};
+        Object[] Baris = {"ID Aksesoris", "Nama Aksesoris", "Harga Beli(Rp)", "Harga Jual (Rp)"};
         tabmode = new DefaultTableModel(null, Baris);
         String cariitem = txtcari.getText();
 
         try {
             String sql = "SELECT * FROM tb_aksesoris WHERE id_aksesoris LIKE '%" + cariitem + "%' "
                     + "OR nama_aksesoris LIKE '%" + cariitem + "%' "
-                    + "OR harga_aksesoris LIKE '%" + cariitem + "%' "
+                    + "OR harga_beliAk LIKE '%" + cariitem + "%' "
+                    + "OR harga_jualAk LIKE '%" + cariitem + "%' "
                     + "ORDER BY id_aksesoris ASC";
             Statement stat = conn.createStatement();
             ResultSet hasil = stat.executeQuery(sql);
@@ -53,7 +54,8 @@ private Connection conn = new koneksi().connect();
                 tabmode.addRow(new Object[]{
                     hasil.getString(1),
                     hasil.getString(2),
-                    hasil.getString(3),});
+                    hasil.getString(3),
+                    hasil.getString(4),});
             }
             table_aksesoris.setModel(tabmode);
         } catch (Exception e) {
@@ -76,13 +78,15 @@ private Connection conn = new koneksi().connect();
         id_aksesoris = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        harga_aksesoris = new javax.swing.JTextField();
+        harga_beliAk = new javax.swing.JTextField();
         bsimpan = new javax.swing.JButton();
         bubah = new javax.swing.JButton();
         bhapus = new javax.swing.JButton();
         bbatal = new javax.swing.JButton();
         bkeluar = new javax.swing.JButton();
         nama_aksesoris = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        harga_jualAk = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -110,7 +114,7 @@ private Connection conn = new koneksi().connect();
         jLabel3.setText("Nama :");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel4.setText("Harga (Rp) :");
+        jLabel4.setText("Harga Beli (Rp) :");
 
         bsimpan.setText("SIMPAN");
         bsimpan.addActionListener(new java.awt.event.ActionListener() {
@@ -147,36 +151,42 @@ private Connection conn = new koneksi().connect();
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setText("Harga Jual (Rp) :");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(nama_aksesoris, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                    .addComponent(id_aksesoris))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(bsimpan)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bubah)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bhapus)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bbatal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bkeluar))
+                    .addComponent(harga_beliAk)
+                    .addComponent(harga_jualAk)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(id_aksesoris, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(harga_aksesoris)))
-                    .addComponent(nama_aksesoris, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(89, Short.MAX_VALUE)
+                .addComponent(bsimpan)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bubah)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bhapus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bbatal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bkeluar)
+                .addGap(82, 82, 82))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,19 +198,25 @@ private Connection conn = new koneksi().connect();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(id_aksesoris, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(harga_aksesoris, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(harga_beliAk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nama_aksesoris, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nama_aksesoris, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(harga_jualAk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bsimpan)
                     .addComponent(bubah)
                     .addComponent(bhapus)
                     .addComponent(bbatal)
                     .addComponent(bkeluar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel6.setBackground(new java.awt.Color(102, 102, 255));
@@ -209,7 +225,7 @@ private Connection conn = new koneksi().connect();
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
+            .addGap(0, 105, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +238,7 @@ private Connection conn = new koneksi().connect();
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
+            .addGap(0, 105, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,7 +286,7 @@ private Connection conn = new koneksi().connect();
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -350,8 +366,9 @@ private Connection conn = new koneksi().connect();
     private void bsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsimpanActionPerformed
         String idText = id_aksesoris.getText().trim(); // Trim untuk menghapus spasi di awal dan akhir
         String namaText = nama_aksesoris.getText().trim();
-        String hargaText = harga_aksesoris.getText().trim();
-        if (idText.isEmpty() || namaText.isEmpty() || hargaText.isEmpty()) {
+        String hargabText = harga_beliAk.getText().trim();
+        String hargajText = harga_jualAk.getText().trim();
+        if (idText.isEmpty() || namaText.isEmpty() || hargabText.isEmpty() || hargajText.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Semua kolom harus diisi.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -363,12 +380,13 @@ private Connection conn = new koneksi().connect();
             JOptionPane.showMessageDialog(this, "ID Service sudah terdaftar.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        String sql = "insert into tb_aksesoris values(?,?,?)";
+        String sql = "insert into tb_aksesoris values(?,?,?,?)";
         try {
             PreparedStatement stat = conn.prepareStatement(sql);
             stat.setString(1, idText);
             stat.setString(2, namaText);
-            stat.setString(3, hargaText);
+            stat.setString(3, hargabText);
+            stat.setString(4, hargajText);
 
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan!");
@@ -383,8 +401,9 @@ private Connection conn = new koneksi().connect();
     private void bubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bubahActionPerformed
         String idText = id_aksesoris.getText().trim(); // Trim untuk menghapus spasi di awal dan akhir
         String namaText = nama_aksesoris.getText().trim();
-        String hargaText = harga_aksesoris.getText().trim();
-        if (idText.isEmpty() || namaText.isEmpty() || hargaText.isEmpty()) {
+        String hargabText = harga_beliAk.getText().trim();
+        String hargajText = harga_jualAk.getText().trim();
+        if (idText.isEmpty() || namaText.isEmpty() || hargabText.isEmpty() || hargajText.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Semua kolom harus diisi.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -392,12 +411,13 @@ private Connection conn = new koneksi().connect();
             JOptionPane.showMessageDialog(this, "ID Service harus terdiri dari 10 digit.", "Kesalahan", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        String sql = "UPDATE tb_aksesoris SET nama_aksesoris=?, harga_aksesoris=? WHERE id_aksesoris=?"; // Perhatikan penggunaan UPDATE
+        String sql = "UPDATE tb_aksesoris SET nama_aksesoris=?, harga_beliAk=?, harga_jualAk=? WHERE id_aksesoris=?";
         try {
             PreparedStatement stat = conn.prepareStatement(sql);
             stat.setString(1, namaText);
-            stat.setString(2, hargaText);
-            stat.setString(3, idText); // WHERE clause
+            stat.setString(2, hargabText);
+            stat.setString(3, hargajText);
+            stat.setString(4, idText);
             int rowsUpdated = stat.executeUpdate();
             if (rowsUpdated > 0) {
                 JOptionPane.showMessageDialog(null, "Data berhasil diubah!");
@@ -452,10 +472,12 @@ private Connection conn = new koneksi().connect();
         String a = tabmode.getValueAt(bar, 0).toString();
         String b = tabmode.getValueAt(bar, 1).toString();
         String c = tabmode.getValueAt(bar, 2).toString();
+        String d = tabmode.getValueAt(bar, 3).toString();
 
         id_aksesoris.setText(a);
         nama_aksesoris.setText(b);
-        harga_aksesoris.setText(c);
+        harga_beliAk.setText(c);
+        harga_jualAk.setText(d);
     }//GEN-LAST:event_table_aksesorisMouseClicked
 
     private void txtcariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcariKeyPressed
@@ -511,12 +533,14 @@ private Connection conn = new koneksi().connect();
     private javax.swing.JButton bsimpan;
     private javax.swing.JButton bubah;
     private javax.swing.JButton cari_aksesoris;
-    private javax.swing.JTextField harga_aksesoris;
+    private javax.swing.JTextField harga_beliAk;
+    private javax.swing.JTextField harga_jualAk;
     private javax.swing.JTextField id_aksesoris;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;

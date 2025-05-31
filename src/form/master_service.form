@@ -308,7 +308,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="cari_service" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="bprint_tek" min="-2" max="-2" attributes="0"/>
+                              <Component id="bprint_ser" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -322,7 +322,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtcari" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cari_service" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="bprint_tek" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bprint_ser" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" pref="190" max="32767" attributes="0"/>
@@ -369,7 +369,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cari_serviceActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="bprint_tek">
+            <Component class="javax.swing.JButton" name="bprint_ser">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="11" style="1"/>
@@ -383,7 +383,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bprint_tekActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bprint_serActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

@@ -5,6 +5,7 @@
  */
 package form;
 
+import form_report.report_service;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -95,7 +96,7 @@ public class master_service extends javax.swing.JFrame {
         table_service = new javax.swing.JTable();
         txtcari = new javax.swing.JTextField();
         cari_service = new javax.swing.JButton();
-        bprint_tek = new javax.swing.JButton();
+        bprint_ser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -269,13 +270,13 @@ public class master_service extends javax.swing.JFrame {
             }
         });
 
-        bprint_tek.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        bprint_tek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
-        bprint_tek.setText("PRINT");
-        bprint_tek.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bprint_tek.addActionListener(new java.awt.event.ActionListener() {
+        bprint_ser.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bprint_ser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
+        bprint_ser.setText("PRINT");
+        bprint_ser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bprint_ser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bprint_tekActionPerformed(evt);
+                bprint_serActionPerformed(evt);
             }
         });
 
@@ -292,7 +293,7 @@ public class master_service extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cari_service)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bprint_tek)))
+                        .addComponent(bprint_ser)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -302,7 +303,7 @@ public class master_service extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cari_service)
-                    .addComponent(bprint_tek))
+                    .addComponent(bprint_ser))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                 .addContainerGap())
@@ -486,11 +487,11 @@ public class master_service extends javax.swing.JFrame {
     datatable();
     }//GEN-LAST:event_cari_serviceActionPerformed
 
-    private void bprint_tekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bprint_tekActionPerformed
-        report_service rs = new report_service();
-        rs.setVisible(true);
-        rs.setLocationRelativeTo(null);    // TODO add your handling code here:
-    }//GEN-LAST:event_bprint_tekActionPerformed
+    private void bprint_serActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bprint_serActionPerformed
+        report_service rse = new report_service();
+        rse.setVisible(true);
+        rse.setLocationRelativeTo(null);    // TODO add your handling code here:
+    }//GEN-LAST:event_bprint_serActionPerformed
 
     /**
      * @param args the command line arguments
@@ -533,7 +534,7 @@ public class master_service extends javax.swing.JFrame {
     private javax.swing.JButton bhapus;
     private javax.swing.JTextField biaya_service;
     private javax.swing.JButton bkeluar;
-    private javax.swing.JButton bprint_tek;
+    private javax.swing.JButton bprint_ser;
     private javax.swing.JButton bsimpan;
     private javax.swing.JButton bubah;
     private javax.swing.JButton cari_service;

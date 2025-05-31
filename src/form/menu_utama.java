@@ -5,6 +5,11 @@
  */
 package form;
 
+import form_report.report_service;
+import form_report.report_pelanggan;
+import form_report.report_teknisi;
+import form_report.report_aksesoris;
+import form_report.report_sparepart;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import java.util.Date;
@@ -24,6 +29,8 @@ public class menu_utama extends javax.swing.JFrame {
      */
     public menu_utama() {
         initComponents();
+        String teknisi = UserID.getNamaTeknisi();
+        label_selamatdatang.setText("Hallo, "+teknisi);
         tampilkanTanggal_hariini();
         tampilalamatService();
         tampilkanWaktuSekarang();
@@ -49,7 +56,7 @@ public class menu_utama extends javax.swing.JFrame {
         Timer waktu = new Timer(delay, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                tampilkanWaktuSekarang(); // Perbarui tampilan waktu setiap detik
+                tampilkanWaktuSekarang();
             }
         });
         waktu.start();
@@ -403,35 +410,7 @@ public class menu_utama extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tampilHalo(String id_teknisi, String sandi) {
-        try (Connection koneksi = DriverManager.getConnection("jdbc:mysql://localhost:3306/service_gadget", "root", "");
-                PreparedStatement preparedStatement = koneksi.prepareStatement("SELECT nama FROM tb_login WHERE id_teknisi = ? AND sandi = ?")) {
-
-            preparedStatement.setString(1, id_teknisi);
-            preparedStatement.setString(2, sandi);
-
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    String nama = resultSet.getString("nama");
-                    System.out.println("Nama Teknisi: " + nama);
-                    label_selamatdatang.setText("Hallo, " + nama);
-                } else {
-                    label_selamatdatang.setText("Hallo");
-                }
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Gagal mengambil data dari database.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-    public void setAkun(String id_teknisi, String sandi) {
-        System.out.println("Sukses Login");
-        System.out.println("ID Teknisi: " + id_teknisi);
-        // System.out.println("sandi: " + sandi);
-        tampilHalo(id_teknisi, sandi);
-    }
-    
+  
     private void keluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluarActionPerformed
 
     }//GEN-LAST:event_keluarActionPerformed
@@ -444,7 +423,7 @@ public class menu_utama extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_keluarakunActionPerformed
 
     private void menu_rteknisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_rteknisiActionPerformed
-        report_teknisi rk = new report_teknisi();
+        form_report.report_teknisi rk = new form_report.report_teknisi();
         rk.setVisible(true);
         rk.setLocationRelativeTo(null);     // TODO add your handling code here:
     }//GEN-LAST:event_menu_rteknisiActionPerformed
@@ -463,7 +442,7 @@ public class menu_utama extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_keluarapkActionPerformed
 
     private void menu_raksesorisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_raksesorisActionPerformed
-        report_aksesoris rak = new report_aksesoris();
+        form_report.report_aksesoris rak = new form_report.report_aksesoris();
         rak.setVisible(true);
         rak.setLocationRelativeTo(null);    // TODO add your handling code here:
     }//GEN-LAST:event_menu_raksesorisActionPerformed
@@ -493,19 +472,19 @@ public class menu_utama extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_serviceActionPerformed
 
     private void menu_rpelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_rpelangganActionPerformed
-        report_pelanggan rp = new report_pelanggan();
+        form_report.report_pelanggan rp = new form_report.report_pelanggan();
         rp.setVisible(true);
         rp.setLocationRelativeTo(null);
     }//GEN-LAST:event_menu_rpelangganActionPerformed
 
     private void menu_rsparepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_rsparepartActionPerformed
-        report_sparepart rs = new report_sparepart();
+        form_report.report_sparepart rs = new form_report.report_sparepart();
         rs.setVisible(true);
         rs.setLocationRelativeTo(null);
     }//GEN-LAST:event_menu_rsparepartActionPerformed
 
     private void menu_rserviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_rserviceActionPerformed
-        report_service rser = new report_service();
+        form_report.report_service rser = new form_report.report_service();
         rser.setVisible(true);
         rser.setLocationRelativeTo(null);
     }//GEN-LAST:event_menu_rserviceActionPerformed

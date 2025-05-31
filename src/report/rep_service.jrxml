@@ -38,7 +38,7 @@
 		<band height="156" splitType="Stretch">
 			<image scaleImage="RealSize" hAlign="Center" vAlign="Middle">
 				<reportElement x="425" y="18" width="129" height="121" uuid="c547a67c-7f51-4361-bfa6-35f3c0868c78"/>
-				<imageExpression><![CDATA[this.getClass().getResourceAsStream("/gambar/login_logo.png")]]></imageExpression>
+				<imageExpression><![CDATA[getClass().getResourceAsStream("/gambar/menu_logo_1.png")]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement style="Title" x="39" y="10" width="377" height="95" forecolor="#000000" uuid="28bd0f88-7758-4d4c-9dce-093433085fd7"/>
@@ -128,61 +128,19 @@
 			</frame>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="147" splitType="Stretch">
-			<staticText>
-				<reportElement x="399" y="115" width="154" height="20" uuid="92b44757-dcba-4376-bc07-2bbc05090703"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Teknisi Gadget House]]></text>
-			</staticText>
-			<line>
-				<reportElement x="399" y="114" width="154" height="1" uuid="f55bf595-0486-42ce-83d1-445191f030a6"/>
-			</line>
-			<staticText>
-				<reportElement x="399" y="35" width="154" height="20" uuid="601d8e40-aa9d-4dc4-af33-cfcaa546c4a8"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Dikeluarkan Oleh,]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="399" y="86" width="154" height="16" uuid="f57ea97f-8925-4523-8b7b-2796171e600d"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="10" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{teknisi}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="400" y="11" width="40" height="20" uuid="f6ea233b-57a3-4cfb-ab97-fa7075c43f84"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="SansSerif" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Jakarta,]]></text>
-			</staticText>
-			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement style="Column header" x="445" y="11" width="100" height="20" forecolor="#000000" uuid="c9a3eac2-3120-4c67-be86-2732daafe582"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="SansSerif" size="10" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
-		</band>
-	</columnFooter>
 	<pageFooter>
 		<band height="29" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#FFFFFF" uuid="08c79541-b6a7-4ba1-892a-83aec17bec90"/>
 				<textField evaluationTime="Report">
-					<reportElement style="Column header" x="305" y="4" width="40" height="20" forecolor="#000000" uuid="e2235476-65ad-4e1b-88b9-3cee568b444b"/>
+					<reportElement style="Column header" x="514" y="4" width="40" height="20" forecolor="#000000" uuid="e2235476-65ad-4e1b-88b9-3cee568b444b"/>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="Column header" x="225" y="4" width="80" height="20" forecolor="#000000" uuid="33521b96-dbb2-4e8b-b27a-9308cd325af3"/>
+					<reportElement style="Column header" x="434" y="4" width="80" height="20" forecolor="#000000" uuid="33521b96-dbb2-4e8b-b27a-9308cd325af3"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>
@@ -192,6 +150,51 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band splitType="Stretch"/>
+		<band height="132">
+			<staticText>
+				<reportElement x="400" y="112" width="154" height="20" uuid="92b44757-dcba-4376-bc07-2bbc05090703"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Teknisi Gadget House]]></text>
+			</staticText>
+			<line>
+				<reportElement x="400" y="111" width="154" height="1" uuid="f55bf595-0486-42ce-83d1-445191f030a6"/>
+			</line>
+			<staticText>
+				<reportElement x="400" y="32" width="154" height="20" uuid="601d8e40-aa9d-4dc4-af33-cfcaa546c4a8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dikeluarkan Oleh,]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="400" y="83" width="154" height="16" uuid="f57ea97f-8925-4523-8b7b-2796171e600d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{teknisi}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="401" y="8" width="40" height="20" uuid="f6ea233b-57a3-4cfb-ab97-fa7075c43f84"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jakarta,]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="446" y="8" width="100" height="20" forecolor="#000000" uuid="c9a3eac2-3120-4c67-be86-2732daafe582"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="3" width="555" height="1" uuid="8e3c3234-e4ed-4dc4-aad1-254b8b7cd2db"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+		</band>
 	</summary>
 </jasperReport>
