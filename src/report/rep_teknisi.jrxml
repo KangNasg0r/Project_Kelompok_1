@@ -95,9 +95,7 @@
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 	</subDataset>
-	<parameter name="teknisi" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
-	</parameter>
+	<parameter name="TEKNISI" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT * FROM tb_login]]>
 	</queryString>
@@ -120,7 +118,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="140" splitType="Stretch">
+		<band height="133" splitType="Stretch">
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="433" height="81" backcolor="#FFFFFF" uuid="867586d2-3b60-4bf2-bc7a-49939fd3c2bd"/>
 				<staticText>
@@ -139,8 +137,8 @@
 				<text><![CDATA[Jl. Raya Tengah No.80, RT.6/RW.1, Gedong, Kec. Ps. Rebo, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13760, Indonesia]]></text>
 			</staticText>
 			<image>
-				<reportElement style="Title" x="452" y="0" width="103" height="95" uuid="9371e5e5-c52b-467c-8a1b-4a3bcc26e3cd"/>
-				<imageExpression><![CDATA[getClass().getResourceAsStream("/gambar/menu_logo_1.png")]]></imageExpression>
+				<reportElement x="447" y="17" width="100" height="100" uuid="184d5a8e-20ce-46c1-be8b-121527808e42"/>
+				<imageExpression><![CDATA["../gambar/menu_logo_1.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -272,7 +270,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{teknisi}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{TEKNISI}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="401" y="55" width="154" height="20" uuid="767c0dd3-f217-4872-b5ab-0b5737fc88f3"/>

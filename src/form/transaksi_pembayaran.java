@@ -10,7 +10,11 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import koneksi.koneksi;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -70,6 +74,7 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         harga_jualAk.setText("");
         qtyAksesoris.setText("");
         subTotalAksesoris.setText("");
+        total_biaya.setText("");
     }
 
     private void tampilkanIdTeknisi() {
@@ -151,6 +156,18 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
             total += amount;
         }
         total_biaya.setText(Integer.toString(total));
+    }
+    
+    public void cetak() {
+        try{
+            String path="./src/report/nota1.jasper";
+            HashMap parameter = new HashMap();
+            parameter.put("id_nota",id_nota.getText());
+            JasperPrint print = JasperFillManager.fillReport(path,parameter,conn);
+            JasperViewer.viewReport(print,false);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane,"Dokumen Tidak Ada" +ex);   
+        }
     }
 
     /**
@@ -1271,8 +1288,8 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
             PreparedStatement stat = conn.prepareStatement(sql);
             stat.setString(1, id_nota.getText());
             stat.setString(2, fd);
-            stat.setString(3, id_pelanggan.getText());
-            stat.setString(4, label_idTeknisi.getText());
+            stat.setString(3, label_idTeknisi.getText());
+            stat.setString(4, id_pelanggan.getText());
 
             stat.executeUpdate();
 
@@ -1295,6 +1312,7 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
                 stat2.executeUpdate();
             }
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
+            cetak();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Data gagal disimpan" + e);
         }

@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="575" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="4e7b9509-f09f-45e8-a3b1-416c4317e64c">
+	<property name="ireport.zoom" value="1.3310000000000057"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_nota" class="java.lang.String"/>
+	<parameter name="TEKNISI" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+    tb_nota.`id_nota` AS tb_nota_id_nota,
+    DATE_FORMAT(tb_nota.`tanggal`, '%d %M %Y') AS tb_nota_tanggal_formatted,
+    tb_nota.`id_teknisi` AS tb_nota_id_teknisi,
+    tb_nota.`id_pelanggan` AS tb_nota_id_pelanggan,
+    tb_nota_detail.`id_item` AS tb_nota_detail_id_item,
+    tb_nota_detail.`nama_item` AS tb_nota_detail_nama_item_from_detail, 
+    tb_nota_detail.`harga_beli` AS tb_nota_detail_harga_beli,
+    tb_nota_detail.`harga_jual` AS tb_nota_detail_harga_jual,
+    tb_nota_detail.`kuantitas` AS tb_nota_detail_kuantitas,
+
+    COALESCE(tb_aksesoris.nama_aksesoris, tb_service.jenis_service, tb_sparepart.nama_barang, tb_nota_detail.nama_item) AS final_nama_item,
+
+    COALESCE(tb_aksesoris.harga_beliAk, tb_service.biaya_service, tb_sparepart.harga_beli, tb_nota_detail.harga_beli) AS final_harga_beli_item,
+
+    COALESCE(tb_aksesoris.harga_jualAk, tb_service.biaya_service, tb_sparepart.harga_jual, tb_nota_detail.harga_jual) AS final_harga_jual_item,
+
+    tb_aksesoris.`id_aksesoris` AS tb_aksesoris_id_aksesoris,
+    tb_aksesoris.`nama_aksesoris` AS tb_aksesoris_nama_aksesoris,
+    tb_aksesoris.`harga_beliAk` AS tb_aksesoris_harga_beliAk,
+    tb_aksesoris.`harga_jualAk` AS tb_aksesoris_harga_jualAk,
+
+    tb_login.`id_teknisi` AS tb_login_id_teknisi,
+    tb_login.`sandi` AS tb_login_sandi,
+    tb_login.`nama` AS tb_login_nama,
+    tb_login.`jenkel` AS tb_login_jenkel,
+    tb_login.`hp` AS tb_login_hp,
+    tb_login.`alamat` AS tb_login_alamat,
+
+    tb_pelanggan.`id_pelanggan` AS tb_pelanggan_id_pelanggan,
+    tb_pelanggan.`nama_pelanggan` AS tb_pelanggan_nama_pelanggan,
+    tb_pelanggan.`hp_pelanggan` AS tb_pelanggan_hp_pelanggan,
+    tb_pelanggan.`jk_pelanggan` AS tb_pelanggan_jk_pelanggan,
+    tb_pelanggan.`almt_pelanggan` AS tb_pelanggan_almt_pelanggan,
+    tb_pelanggan.`tanggal_pelanggan` AS tb_pelanggan_tanggal_pelanggan,
+
+    tb_service.`id_service` AS tb_service_id_service,
+    tb_service.`jenis_service` AS tb_service_jenis_service,
+    tb_service.`biaya_service` AS tb_service_biaya_service,
+
+    tb_sparepart.`kd_barang` AS tb_sparepart_kd_barang,
+    tb_sparepart.`nama_barang` AS tb_sparepart_nama_barang,
+    tb_sparepart.`harga_beli` AS tb_sparepart_harga_beli,
+    tb_sparepart.`harga_jual` AS tb_sparepart_harga_jual,
+    tb_sparepart.`jenis_barang` AS tb_sparepart_jenis_barang,
+    tb_sparepart.`merk_barang` AS tb_sparepart_merk_barang
+FROM
+    `tb_nota` tb_nota
+INNER JOIN `tb_nota_detail` tb_nota_detail ON tb_nota.`id_nota` = tb_nota_detail.`id_nota`
+LEFT JOIN `tb_aksesoris` tb_aksesoris ON tb_nota_detail.`id_item` = tb_aksesoris.`id_aksesoris`
+LEFT JOIN `tb_service` tb_service ON tb_nota_detail.`id_item` = tb_service.`id_service`
+LEFT JOIN `tb_sparepart` tb_sparepart ON tb_nota_detail.`id_item` = tb_sparepart.`kd_barang`
+INNER JOIN `tb_login` tb_login ON tb_nota.`id_teknisi` = tb_login.`id_teknisi`
+INNER JOIN `tb_pelanggan` tb_pelanggan ON tb_nota.`id_pelanggan` = tb_pelanggan.`id_pelanggan`
+WHERE
+    tb_nota.id_nota = $P{id_nota};]]>
+	</queryString>
+	<field name="tb_nota_id_nota" class="java.lang.String"/>
+	<field name="tb_nota_tanggal_formatted" class="java.lang.String"/>
+	<field name="tb_nota_id_teknisi" class="java.lang.String"/>
+	<field name="tb_nota_id_pelanggan" class="java.lang.String"/>
+	<field name="tb_nota_detail_id_item" class="java.lang.String"/>
+	<field name="tb_nota_detail_nama_item_from_detail" class="java.lang.String"/>
+	<field name="tb_nota_detail_harga_beli" class="java.lang.Integer"/>
+	<field name="tb_nota_detail_harga_jual" class="java.lang.Integer"/>
+	<field name="tb_nota_detail_kuantitas" class="java.lang.Integer"/>
+	<field name="final_nama_item" class="java.lang.String"/>
+	<field name="final_harga_beli_item" class="java.lang.Integer"/>
+	<field name="final_harga_jual_item" class="java.lang.Integer"/>
+	<field name="tb_aksesoris_id_aksesoris" class="java.lang.String"/>
+	<field name="tb_aksesoris_nama_aksesoris" class="java.lang.String"/>
+	<field name="tb_aksesoris_harga_beliAk" class="java.lang.Integer"/>
+	<field name="tb_aksesoris_harga_jualAk" class="java.lang.Integer"/>
+	<field name="tb_login_id_teknisi" class="java.lang.String"/>
+	<field name="tb_login_sandi" class="java.lang.String"/>
+	<field name="tb_login_nama" class="java.lang.String"/>
+	<field name="tb_login_jenkel" class="java.lang.String"/>
+	<field name="tb_login_hp" class="java.lang.String"/>
+	<field name="tb_login_alamat" class="java.lang.String"/>
+	<field name="tb_pelanggan_id_pelanggan" class="java.lang.String"/>
+	<field name="tb_pelanggan_nama_pelanggan" class="java.lang.String"/>
+	<field name="tb_pelanggan_hp_pelanggan" class="java.lang.String"/>
+	<field name="tb_pelanggan_jk_pelanggan" class="java.lang.String"/>
+	<field name="tb_pelanggan_almt_pelanggan" class="java.lang.String"/>
+	<field name="tb_pelanggan_tanggal_pelanggan" class="java.sql.Date"/>
+	<field name="tb_service_id_service" class="java.lang.String"/>
+	<field name="tb_service_jenis_service" class="java.lang.String"/>
+	<field name="tb_service_biaya_service" class="java.lang.Integer"/>
+	<field name="tb_sparepart_kd_barang" class="java.lang.String"/>
+	<field name="tb_sparepart_nama_barang" class="java.lang.String"/>
+	<field name="tb_sparepart_harga_beli" class="java.lang.Integer"/>
+	<field name="tb_sparepart_harga_jual" class="java.lang.Integer"/>
+	<field name="tb_sparepart_jenis_barang" class="java.lang.String"/>
+	<field name="tb_sparepart_merk_barang" class="java.lang.String"/>
+	<variable name="subtotal" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{tb_nota_detail_kuantitas}*$F{tb_nota_detail_harga_jual}]]></variableExpression>
+	</variable>
+	<variable name="total_belanja" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{subtotal}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="67" width="462" height="54" uuid="6b378b24-3117-4b9a-ba75-4701861c792a"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Consolas" size="17"/>
+				</textElement>
+				<text><![CDATA[Jl. Raya Tengah No.80, RT.6/RW.1, Daerah Khusus Ibukota Jakarta 13760, Indonesia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="4" width="462" height="63" uuid="3b8bad04-2cd4-4f98-a117-94e8bef99150"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Consolas" size="40" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOTA GADGET HOUSE]]></text>
+			</staticText>
+			<image>
+				<reportElement x="467" y="15" width="100" height="100" uuid="426df809-0031-4c6e-bc87-19d5ecd10a43"/>
+				<imageExpression><![CDATA["../gambar/menu_logo_1.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="58">
+			<staticText>
+				<reportElement x="10" y="7" width="66" height="20" uuid="27cebd41-fd65-4ade-856f-c8bb8dcf3d59"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID Nota ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="3" width="575" height="1" uuid="70c3568c-fe80-4a79-beac-439caeb574ad"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="10" y="30" width="66" height="20" uuid="7cfcb27f-7cf4-4efc-b708-65e7f0b14435"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pelanggan]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="87" y="7" width="191" height="20" uuid="e1a41c80-a415-457b-b139-399fc150ebc6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_nota_id_nota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="87" y="30" width="191" height="20" uuid="9913aa70-2194-467c-91c8-0d29e1ed3511"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_pelanggan_nama_pelanggan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="332" y="7" width="51" height="20" uuid="cbc4a9a4-f118-4bde-90e0-ebc973a881a6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="332" y="30" width="51" height="20" uuid="c134a539-e56c-4832-84d0-e13393acc5bb"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Teknisi]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="394" y="30" width="173" height="20" uuid="6fd5d4a0-e1a5-447c-83b7-7566dc20c079"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_login_nama}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="54" width="575" height="1" uuid="c7783d93-c6d5-4faa-bdfd-0ae55d495fe2"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="394" y="7" width="173" height="20" uuid="6e82a32d-6a0b-422f-a661-8262c016badf"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_nota_tanggal_formatted}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="76" y="7" width="11" height="20" uuid="56e0a34a-8d5b-414a-863c-81030f14b8d7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="76" y="30" width="11" height="20" uuid="21560633-ed59-41e9-9946-77c8b54cf3c5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="383" y="7" width="11" height="20" uuid="13e07bde-7b54-4ae3-8a49-9f9c270d00a7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="383" y="30" width="11" height="20" uuid="95d256bc-f8e3-4f23-9694-bfa6552f18c1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="3" width="33" height="20" uuid="499716ec-ca1f-4645-8a5f-414d4fa2d1c2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="26" width="575" height="1" uuid="aa685e29-ce6f-4b9f-b192-dea10d31c1eb"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="32" y="3" width="280" height="20" uuid="2eb2d4bd-325b-4d7d-a2d1-0f9757f98fb7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Barang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="312" y="3" width="60" height="20" uuid="dc8485d9-e46a-44ec-9400-9e5a6ec3c4ad"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kuantitas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="3" width="96" height="20" uuid="403922d0-0363-45ea-86d4-aebaea857aec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Harga (Rp)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="467" y="3" width="108" height="20" uuid="24aa3cbb-3735-4663-8706-48ec60e2c109"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total (Rp)]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="3" width="33" height="20" uuid="f8953f68-09dc-447f-9f08-6e3ab4f0653c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="312" y="3" width="60" height="20" uuid="b05dc941-b9ff-4d47-adc4-28abdfdf4c83"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_nota_detail_kuantitas}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="372" y="3" width="90" height="20" uuid="816367fa-d905-4c8b-9b01-8672b8d49831"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tb_nota_detail_harga_jual}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="467" y="3" width="100" height="20" uuid="2d4642e8-e410-4e18-9253-5a11255ab44a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{subtotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="3" width="279" height="20" uuid="8f8a7c32-2012-4157-bbc9-5c7a5fd4c838"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{final_nama_item}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="29">
+			<textField>
+				<reportElement x="454" y="7" width="80" height="20" uuid="4c6af202-95af-4103-a78c-f2ce7f2d1080"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="534" y="7" width="40" height="20" uuid="82ee3e7e-2e80-47e6-9f51-e02c0d45df64"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="3" width="575" height="1" uuid="d40a54ff-57c0-4f12-8b74-de7381c3e352"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="156" splitType="Stretch">
+			<staticText>
+				<reportElement x="368" y="10" width="99" height="20" uuid="4227579d-25b6-4336-9044-870b906a52a4"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Belanja :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="6" width="575" height="1" uuid="93eb2be6-1f1f-4114-a4c1-f6947a492938"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="467" y="10" width="100" height="20" uuid="e48c7e1d-dafe-4796-a2b2-39c3b9247595"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_belanja}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="421" y="46" width="40" height="20" uuid="426e36a3-ee6a-49f6-aeb8-99b0d3a290c8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jakarta,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="421" y="66" width="154" height="20" uuid="8cc9b05a-0aae-4e21-88a2-d423bc5c4cec"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dikeluarkan Oleh,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="421" y="133" width="154" height="20" uuid="6a82f5f8-faa4-4b16-97eb-2db137108185"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Teknisi Gadget House]]></text>
+			</staticText>
+			<line>
+				<reportElement x="421" y="132" width="154" height="1" uuid="c9ab643c-7c9c-477b-a467-3b507fac691b"/>
+			</line>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="462" y="46" width="113" height="20" uuid="f4af4309-20d1-4c54-9f09-d39938942036"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="421" y="116" width="154" height="16" uuid="18ad7e38-3ab6-4cc0-b5eb-9984d66dc4f2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TEKNISI}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

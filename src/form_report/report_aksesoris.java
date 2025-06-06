@@ -4,24 +4,27 @@
  * and open the template in the editor.
  */
 package form_report;
+
 import form.UserID;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyEvent;
-import java.io.InputStream;
 import koneksi.koneksi;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 import java.util.HashMap;
+
 /**
  *
  * @author Ahmad Nur Latif P
  */
 public class report_aksesoris extends javax.swing.JFrame {
-private Connection conn = new koneksi().connect();
+
+    private Connection conn = new koneksi().connect();
     private DefaultTableModel tabmode;
+
     /**
      * Creates new form report_aksesoris
      */
@@ -30,7 +33,7 @@ private Connection conn = new koneksi().connect();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         datatable();
     }
-    
+
     protected void datatable() {
         Object[] Baris = {"ID Aksesoris", "Nama Aksesoris", "Harga Beli(Rp)", "Harga Jual (Rp)"};
         tabmode = new DefaultTableModel(null, Baris);
@@ -203,40 +206,26 @@ private Connection conn = new koneksi().connect();
     private void bprint_akActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bprint_akActionPerformed
         try {
             String loginId = UserID.getIdTeknisi();
-            String loginTeknisi = "";
+            String loginTeknisi = "Tidak Diketahui";
 
-            String sqlNama = "SELECT nama FROM tb_login WHERE id_teknisi = ?";
-            PreparedStatement teknama = conn.prepareStatement(sqlNama);
-            teknama.setString(1, loginId);
-            ResultSet rsNama = teknama.executeQuery();
-
-            if (rsNama.next()) {
-                loginTeknisi = rsNama.getString("nama");
-            } else {
-                loginTeknisi = "Tidak Diketahui";
+            try (PreparedStatement teknama = conn.prepareStatement("SELECT nama FROM tb_login WHERE id_teknisi = ?")) {
+                teknama.setString(1, loginId);
+                try (ResultSet rsNama = teknama.executeQuery()) {
+                    if (rsNama.next()) {
+                        loginTeknisi = rsNama.getString("nama");
+                    }
+                }
             }
 
-            String reportPath = "/report/rep_aksesoris.jasper";
-            HashMap parameters = new HashMap();
-            parameters.put("TEKNISI", loginTeknisi);
+            String reportPath = "./src/report/rep_aksesoris.jasper";
+            HashMap parameter = new HashMap();
+            parameter.put("TEKNISI", loginTeknisi);
 
-            InputStream logo = getClass().getResourceAsStream("/gambar/menu_logo_1.png");
-            if (logo != null) {
-                parameters.put("LogoImage", logo);
-            } else {
-                JOptionPane.showMessageDialog(this, "Gambar logo tidak ditemukan");
-                return;
-            }
-
-            JasperPrint jp_tek = JasperFillManager.fillReport(getClass().getResourceAsStream(reportPath), parameters, conn); // Gunakan koneksi conn yang sudah ada
-            JasperViewer.viewReport(jp_tek, false);
-
-            rsNama.close();
-            teknama.close();
-            logo.close();
+            JasperPrint print = JasperFillManager.fillReport(reportPath,parameter,conn);
+            JasperViewer.viewReport(print,false);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Gagal mencetak report: " + e);
+            JOptionPane.showMessageDialog(this, "Gagal mencetak report: " + e.getMessage());
             e.printStackTrace();
         }
     }//GEN-LAST:event_bprint_akActionPerformed

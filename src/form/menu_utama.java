@@ -103,6 +103,7 @@ public class menu_utama extends javax.swing.JFrame {
         menu_rsparepart = new javax.swing.JMenuItem();
         menu_raksesoris = new javax.swing.JMenuItem();
         menu_rservice = new javax.swing.JMenuItem();
+        riwayat_transaksi = new javax.swing.JMenuItem();
         keluar = new javax.swing.JMenu();
         menu_keluarakun = new javax.swing.JMenuItem();
         menu_keluarapk = new javax.swing.JMenuItem();
@@ -359,6 +360,16 @@ public class menu_utama extends javax.swing.JFrame {
         });
         report.add(menu_rservice);
 
+        riwayat_transaksi.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        riwayat_transaksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
+        riwayat_transaksi.setText("Riwayat Transaksi");
+        riwayat_transaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                riwayat_transaksiActionPerformed(evt);
+            }
+        });
+        report.add(riwayat_transaksi);
+
         rep_teknisi.add(report);
 
         keluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/exit.png"))); // NOI18N
@@ -495,6 +506,12 @@ public class menu_utama extends javax.swing.JFrame {
         tp.setLocationRelativeTo(null);
     }//GEN-LAST:event_menu_pembayaranActionPerformed
 
+    private void riwayat_transaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_riwayat_transaksiActionPerformed
+        form_report.riwayat_transaksi rt = new form_report.riwayat_transaksi();
+        rt.setVisible(true);
+        rt.setLocationRelativeTo(null);
+    }//GEN-LAST:event_riwayat_transaksiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -558,6 +575,7 @@ public class menu_utama extends javax.swing.JFrame {
     private javax.swing.JMenuItem menu_teknisi;
     private javax.swing.JMenuBar rep_teknisi;
     private javax.swing.JMenu report;
+    private javax.swing.JMenuItem riwayat_transaksi;
     private javax.swing.JLabel tanggal_label;
     private javax.swing.JMenu transaksi;
     // End of variables declaration//GEN-END:variables

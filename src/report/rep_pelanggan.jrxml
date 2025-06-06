@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="57dbdcf7-863e-4f10-aa8b-387ad01d7851">
-	<property name="ireport.zoom" value="1.9487171000000065"/>
-	<property name="ireport.x" value="463"/>
-	<property name="ireport.y" value="164"/>
+	<property name="ireport.zoom" value="1.210000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -13,10 +13,7 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
-	<parameter name="DikeluarkanOlehTek" class="java.lang.String"/>
-	<parameter name="LogoImage" class="java.io.InputStream" isForPrompting="false">
-		<defaultValueExpression><![CDATA["null"]]></defaultValueExpression>
-	</parameter>
+	<parameter name="TEKNISI" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT * FROM tb_pelanggan]]>
 	</queryString>
@@ -43,10 +40,6 @@
 	</background>
 	<title>
 		<band height="134" splitType="Stretch">
-			<image>
-				<reportElement style="Title" x="442" y="17" width="103" height="95" uuid="7013ef98-962e-40e7-afeb-963e7d51a8eb"/>
-				<imageExpression><![CDATA[getClass().getResourceAsStream("/gambar/menu_logo_1.png")]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement style="Title" x="39" y="0" width="377" height="81" forecolor="#000000" uuid="c9de0b9b-999b-4996-8de4-7d3952b2ebc5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -61,6 +54,10 @@
 				</textElement>
 				<text><![CDATA[Jl. Raya Tengah No.80, RT.6/RW.1, Gedong, Kec. Ps. Rebo, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13760, Indonesia]]></text>
 			</staticText>
+			<image>
+				<reportElement x="448" y="18" width="100" height="100" uuid="b0b2ef0d-33db-482d-8963-f0ad22703018"/>
+				<imageExpression><![CDATA["../gambar/menu_logo_1.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
@@ -241,7 +238,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{DikeluarkanOlehTek}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{TEKNISI}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

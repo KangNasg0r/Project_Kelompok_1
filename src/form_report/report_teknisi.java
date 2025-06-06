@@ -215,41 +215,26 @@ public class report_teknisi extends javax.swing.JFrame {
     private void bprint_tekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bprint_tekActionPerformed
         try {
             String loginId = UserID.getIdTeknisi();
-            String loginTeknisi = "";
+            String loginTeknisi = "Tidak Diketahui";
 
-            
-            String sqlNama = "SELECT nama FROM tb_login WHERE id_teknisi = ?";
-            PreparedStatement teknama = conn.prepareStatement(sqlNama);
-            teknama.setString(1, loginId);
-            ResultSet rsNama = teknama.executeQuery();
-
-            if (rsNama.next()) {
-                loginTeknisi = rsNama.getString("nama");
-            } else {
-                loginTeknisi = "Tidak Diketahui";
+            try (PreparedStatement teknama = conn.prepareStatement("SELECT nama FROM tb_login WHERE id_teknisi = ?")) {
+                teknama.setString(1, loginId);
+                try (ResultSet rsNama = teknama.executeQuery()) {
+                    if (rsNama.next()) {
+                        loginTeknisi = rsNama.getString("nama");
+                    }
+                }
             }
 
-            String reportPath = "/report/rep_teknisi.jasper";
-            HashMap parameters = new HashMap();
-            parameters.put("teknisi", loginTeknisi);
-            
-            InputStream logo = getClass().getResourceAsStream("/gambar/menu_logo_1.png");
-            if (logo != null) {
-                parameters.put("LogoImage", logo);
-            } else {
-                JOptionPane.showMessageDialog(this, "Gambar logo tidak ditemukan");
-                return;
-            }
+            String reportPath = "./src/report/rep_teknisi.jasper";
+            HashMap parameter = new HashMap();
+            parameter.put("TEKNISI", loginTeknisi);
 
-            JasperPrint jp_tek = JasperFillManager.fillReport(getClass().getResourceAsStream(reportPath), parameters, conn); // Gunakan koneksi conn yang sudah ada
-            JasperViewer.viewReport(jp_tek, false);
-
-            rsNama.close();
-            teknama.close();
-            logo.close();
+            JasperPrint print = JasperFillManager.fillReport(reportPath,parameter,conn);
+            JasperViewer.viewReport(print,false);
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Gagal mencetak report: " + e);
+            JOptionPane.showMessageDialog(this, "Gagal mencetak report: " + e.getMessage());
             e.printStackTrace();
         }
     }//GEN-LAST:event_bprint_tekActionPerformed
