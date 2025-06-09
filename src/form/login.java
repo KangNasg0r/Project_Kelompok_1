@@ -49,7 +49,7 @@ public class login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(102, 0, 153));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -193,7 +193,7 @@ public class login extends javax.swing.JFrame {
 
     private void bloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bloginActionPerformed
         try {
-            String sql = "SELECT * FROM tb_login WHERE id_teknisi = ? AND sandi = ?";
+            String sql = "SELECT * FROM tb_login WHERE BINARY id_teknisi = ? AND BINARY sandi = ?";
             PreparedStatement stat = conn.prepareStatement(sql);
             stat.setString(1, id_teknisi.getText());
             stat.setString(2, sandi.getText());

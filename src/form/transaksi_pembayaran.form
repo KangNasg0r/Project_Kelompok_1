@@ -164,16 +164,20 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="label_idTeknisi" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="label_idTeknisi" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel2" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel4" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="label_namaTeknisi" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="label_namaTeknisi" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel3" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jLabel5" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -289,15 +293,19 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="id_nota" pref="27" max="32767" attributes="0"/>
-                          <Component id="labelnot" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jLabel8" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel8" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="id_nota" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="labelnot" pref="21" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtgl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel7" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel9" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="jtgl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -352,6 +360,11 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="id_nota">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="org.jdesktop.swingx.JXDatePicker" name="jtgl">
             </Component>
@@ -464,6 +477,9 @@
             </Container>
             <Component class="javax.swing.JButton" name="bhapus_transaksi">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/gambar/delete.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="HAPUS"/>
               </Properties>
               <Events>
@@ -474,6 +490,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="bsimpan">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/gambar/save.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="SIMPAN"/>
           </Properties>
           <Events>
@@ -482,6 +501,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="bbatal">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/gambar/cancel.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="BATAL"/>
           </Properties>
           <Events>
@@ -490,7 +512,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="bkeluar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="KELUAR"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/gambar/back.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="KEMBALI"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bkeluarActionPerformed"/>
@@ -666,13 +691,17 @@
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="btambah_aksesoris" min="-2" max="-2" attributes="0"/>
-                                              <Component id="qtyAksesoris" min="-2" pref="40" max="-2" attributes="0"/>
                                               <Component id="subTotalAksesoris" max="32767" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="btambah_aksesoris" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="qtyAksesoris" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              </Group>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel49" min="-2" pref="85" max="-2" attributes="0"/>
@@ -680,9 +709,9 @@
                                   <Component id="jLabel50" min="-2" pref="19" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="harga_jualAk" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -746,6 +775,11 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="id_aksesoris">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel25">
                   <Properties>
@@ -761,6 +795,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="bcari_aksesoris">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/gambar/search.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="CARI"/>
                   </Properties>
                   <Events>
@@ -791,6 +828,11 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="nama_aksesoris">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel28">
                   <Properties>
@@ -816,9 +858,17 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="harga_beliAk">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btambah_aksesoris">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/gambar/create.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="TAMBAH"/>
                   </Properties>
                   <Events>
@@ -877,6 +927,11 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="subTotalAksesoris">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel49">
                   <Properties>
@@ -902,6 +957,11 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="harga_jualAk">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                    </Property>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -944,7 +1004,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel17" min="-2" pref="19" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jLabel15" min="-2" pref="19" max="-2" attributes="0"/>
@@ -1097,16 +1157,40 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="id_pelanggan">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="12" style="1"/>
+                    </Property>
+                  </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JTextField" name="nama_pelanggan">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="12" style="1"/>
+                    </Property>
+                  </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JTextField" name="hp_pelanggan">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="12" style="1"/>
+                    </Property>
+                  </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
@@ -1120,7 +1204,13 @@
                   <SubComponents>
                     <Component class="javax.swing.JTextArea" name="almt_pelanggan">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                        </Property>
                         <Property name="columns" type="int" value="20"/>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="12" style="1"/>
+                        </Property>
                         <Property name="rows" type="int" value="5"/>
                       </Properties>
                       <AuxValues>
@@ -1131,6 +1221,9 @@
                 </Container>
                 <Component class="javax.swing.JButton" name="bcari_pelanggan">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/gambar/search.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="CARI"/>
                   </Properties>
                   <Events>
@@ -1239,7 +1332,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel43" min="-2" pref="19" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="qtySparepart" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="qtySparepart" min="-2" pref="171" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -1347,6 +1440,11 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="id_service">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel19">
                   <Properties>
@@ -1362,6 +1460,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="bcari_service">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/gambar/search.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="CARI"/>
                   </Properties>
                   <Events>
@@ -1392,6 +1493,11 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jenis_service">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel22">
                   <Properties>
@@ -1417,6 +1523,11 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="biaya_service">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel32">
                   <Properties>
@@ -1430,6 +1541,11 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="kd_barang">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel33">
                   <Properties>
@@ -1445,6 +1561,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="bcari_sparepart">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/gambar/search.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="CARI"/>
                   </Properties>
                   <Events>
@@ -1475,6 +1594,11 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="nama_barang">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel36">
                   <Properties>
@@ -1500,8 +1624,18 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="harga_beli">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="harga_jual">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel39">
                   <Properties>
@@ -1538,6 +1672,11 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="merk_barang">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                    </Property>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel41">
                   <Properties>
@@ -1581,6 +1720,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btambah_sparepart">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/gambar/create.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="TAMBAH"/>
                   </Properties>
                   <Events>
@@ -1630,6 +1772,11 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="subTotalSparepart">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
+                    </Property>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>

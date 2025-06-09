@@ -16,6 +16,11 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 
+import java.awt.event.FocusAdapter; 
+import java.awt.event.FocusEvent;   
+import java.awt.Color;               
+import javax.swing.JTextField;   
+
 /**
  *
  * @author Ahmad Nur Latif P
@@ -28,6 +33,8 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
     public String id_aks, nama_aks, harga_bel_aks, harga_ju_aks;
     private Connection conn = new koneksi().connect();
     private DefaultTableModel tabmode;
+    
+    private static final String PLACEHOLDER_QTY = "Masukkan jumlah";
 
     /**
      * Creates new form transaksi_pembayaran
@@ -42,15 +49,61 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         almt_pelanggan.setLineWrap(true);
         almt_pelanggan.setWrapStyleWord(true);
         autonumber();
+        
+        addPlaceholder(qtySparepart, PLACEHOLDER_QTY);
+        addPlaceholder(qtyAksesoris, PLACEHOLDER_QTY);
+    }
+    
+    private void addPlaceholder(JTextField textField, String placeholderText) {
+        textField.setText(placeholderText);
+        textField.setForeground(Color.BLACK);
+
+        textField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (textField.getText().equals(placeholderText)) {
+                    textField.setText("");
+                    textField.setForeground(Color.BLACK);
+                }
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (textField.getText().isEmpty()) {
+                    textField.setText(placeholderText);
+                    textField.setForeground(Color.BLACK);
+                }
+            }
+        });
     }
 
     protected void aktif() {
-        id_pelanggan.requestFocus();
+        jtgl.requestFocus();
         jtgl.setFormats(new SimpleDateFormat("yyyy/MM/dd"));
         jtgl.setDate(new Date());
         Object[] Baris = {"ID Barang", "Nama Barang", "Harga Beli", "Harga Jual", "Kuantitas", "Total"};
         tabmode = new DefaultTableModel(null, Baris);
         tbl_transaksi.setModel(tabmode);
+        
+        id_nota.setEditable(false);
+        id_pelanggan.setEditable(false);
+        nama_pelanggan.setEditable(false);
+        hp_pelanggan.setEditable(false);
+        almt_pelanggan.setEditable(false);
+        id_service.setEditable(false);
+        jenis_service.setEditable(false);
+        biaya_service.setEditable(false);
+        kd_barang.setEditable(false);
+        nama_barang.setEditable(false);
+        harga_beli.setEditable(false);
+        harga_jual.setEditable(false);
+        merk_barang.setEditable(false);
+        subTotalSparepart.setEditable(false);
+        id_aksesoris.setEditable(false);
+        nama_aksesoris.setEditable(false);
+        harga_beliAk.setEditable(false);
+        harga_jualAk.setEditable(false);
+        subTotalAksesoris.setEditable(false);
+        total_biaya.setEditable(false);
     }
     
     protected void kosong() {
@@ -66,13 +119,19 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         harga_beli.setText("");
         harga_jual.setText("");
         merk_barang.setText("");
-        qtySparepart.setText("");
+        
+        qtySparepart.setText(PLACEHOLDER_QTY);
+        //qtySparepart.setText("");
+        
         subTotalSparepart.setText("");
         id_aksesoris.setText("");
         nama_aksesoris.setText("");
         harga_beliAk.setText("");
         harga_jualAk.setText("");
-        qtyAksesoris.setText("");
+        
+        qtyAksesoris.setText(PLACEHOLDER_QTY);
+        //qtyAksesoris.setText("");
+        
         subTotalAksesoris.setText("");
         total_biaya.setText("");
     }
@@ -112,6 +171,9 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         harga_beli.setText(harga_bel_bar);
         harga_jual.setText(harga_ju_bar);
         merk_barang.setText(merk_bar);
+        
+        qtySparepart.setText(PLACEHOLDER_QTY);
+        subTotalSparepart.setText("");
     }
 
     public void itemTerpilihAkse() {
@@ -121,6 +183,9 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         nama_aksesoris.setText(nama_aks);
         harga_beliAk.setText(harga_bel_aks);
         harga_jualAk.setText(harga_ju_aks);
+        
+        qtyAksesoris.setText(PLACEHOLDER_QTY);
+        subTotalAksesoris.setText("");
     }
 
     protected void autonumber() {
@@ -160,9 +225,23 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
     
     public void cetak() {
         try{
+            String loginId = UserID.getIdTeknisi();
+            String loginTeknisi = "Tidak Diketahui";
+            
+            try (PreparedStatement teknama = conn.prepareStatement("SELECT nama FROM tb_login WHERE id_teknisi = ?")) {
+                teknama.setString(1, loginId);
+                try (ResultSet rsNama = teknama.executeQuery()) {
+                    if (rsNama.next()) {
+                        loginTeknisi = rsNama.getString("nama");
+                    }
+                }
+            }
+            
             String path="./src/report/nota1.jasper";
             HashMap parameter = new HashMap();
             parameter.put("id_nota",id_nota.getText());
+            parameter.put("TEKNISI", loginTeknisi);
+            
             JasperPrint print = JasperFillManager.fillReport(path,parameter,conn);
             JasperViewer.viewReport(print,false);
         }catch(Exception ex){
@@ -342,15 +421,17 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
             panel_teknisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_teknisiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel_teknisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(label_idTeknisi))
-                .addGap(18, 18, 18)
-                .addGroup(panel_teknisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5)
-                    .addComponent(label_namaTeknisi))
+                .addGroup(panel_teknisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label_idTeknisi, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panel_teknisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel_teknisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label_namaTeknisi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panel_teknisiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -373,6 +454,8 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText(":");
+
+        id_nota.setBackground(java.awt.SystemColor.controlHighlight);
 
         javax.swing.GroupLayout panel_notaLayout = new javax.swing.GroupLayout(panel_nota);
         panel_nota.setLayout(panel_notaLayout);
@@ -400,14 +483,16 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
             .addGroup(panel_notaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel_notaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(id_nota, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                    .addComponent(labelnot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panel_notaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel9)
-                    .addComponent(jtgl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel_notaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(id_nota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelnot, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panel_notaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panel_notaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtgl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -427,6 +512,7 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tbl_transaksi);
 
+        bhapus_transaksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/delete.png"))); // NOI18N
         bhapus_transaksi.setText("HAPUS");
         bhapus_transaksi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -454,6 +540,7 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        bsimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/save.png"))); // NOI18N
         bsimpan.setText("SIMPAN");
         bsimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -461,6 +548,7 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
             }
         });
 
+        bbatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/cancel.png"))); // NOI18N
         bbatal.setText("BATAL");
         bbatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -468,7 +556,8 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
             }
         });
 
-        bkeluar.setText("KELUAR");
+        bkeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/back.png"))); // NOI18N
+        bkeluar.setText("KEMBALI");
         bkeluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bkeluarActionPerformed(evt);
@@ -521,11 +610,14 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("ID Aksesoris");
 
+        id_aksesoris.setBackground(java.awt.SystemColor.controlHighlight);
+
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel25.setText(":");
 
+        bcari_aksesoris.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/search.png"))); // NOI18N
         bcari_aksesoris.setText("CARI");
         bcari_aksesoris.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -542,6 +634,8 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel27.setText(":");
 
+        nama_aksesoris.setBackground(java.awt.SystemColor.controlHighlight);
+
         jLabel28.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
         jLabel28.setText("Harga Beli");
@@ -551,6 +645,9 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel29.setText(":");
 
+        harga_beliAk.setBackground(java.awt.SystemColor.controlHighlight);
+
+        btambah_aksesoris.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/create.png"))); // NOI18N
         btambah_aksesoris.setText("TAMBAH");
         btambah_aksesoris.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -582,6 +679,8 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel48.setText(":");
 
+        subTotalAksesoris.setBackground(java.awt.SystemColor.controlHighlight);
+
         jLabel49.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel49.setForeground(new java.awt.Color(255, 255, 255));
         jLabel49.setText("Harga Jual");
@@ -590,6 +689,8 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         jLabel50.setForeground(new java.awt.Color(255, 255, 255));
         jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel50.setText(":");
+
+        harga_jualAk.setBackground(java.awt.SystemColor.controlHighlight);
 
         javax.swing.GroupLayout detail_aksesorisLayout = new javax.swing.GroupLayout(detail_aksesoris);
         detail_aksesoris.setLayout(detail_aksesorisLayout);
@@ -628,17 +729,19 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
                                     .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(detail_aksesorisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btambah_aksesoris)
-                                    .addComponent(qtyAksesoris, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(subTotalAksesoris))))
-                        .addGap(14, 14, 14))
+                                    .addComponent(subTotalAksesoris)
+                                    .addGroup(detail_aksesorisLayout.createSequentialGroup()
+                                        .addGroup(detail_aksesorisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btambah_aksesoris)
+                                            .addComponent(qtyAksesoris, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(detail_aksesorisLayout.createSequentialGroup()
                         .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(harga_jualAk)
-                        .addContainerGap())))
+                        .addComponent(harga_jualAk)))
+                .addGap(14, 14, 14))
         );
         detail_aksesorisLayout.setVerticalGroup(
             detail_aksesorisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -719,10 +822,22 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setText(":");
 
+        id_pelanggan.setBackground(java.awt.SystemColor.controlHighlight);
+        id_pelanggan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        nama_pelanggan.setBackground(java.awt.SystemColor.controlHighlight);
+        nama_pelanggan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        hp_pelanggan.setBackground(java.awt.SystemColor.controlHighlight);
+        hp_pelanggan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        almt_pelanggan.setBackground(java.awt.SystemColor.controlHighlight);
         almt_pelanggan.setColumns(20);
+        almt_pelanggan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         almt_pelanggan.setRows(5);
         jScrollPane1.setViewportView(almt_pelanggan);
 
+        bcari_pelanggan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/search.png"))); // NOI18N
         bcari_pelanggan.setText("CARI");
         bcari_pelanggan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -746,7 +861,7 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
                     .addGroup(panel_pelangganLayout.createSequentialGroup()
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(panel_pelangganLayout.createSequentialGroup()
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -799,11 +914,14 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("ID Service");
 
+        id_service.setBackground(java.awt.SystemColor.controlHighlight);
+
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText(":");
 
+        bcari_service.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/search.png"))); // NOI18N
         bcari_service.setText("CARI");
         bcari_service.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -820,6 +938,8 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel21.setText(":");
 
+        jenis_service.setBackground(java.awt.SystemColor.controlHighlight);
+
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Harga");
@@ -829,15 +949,20 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText(":");
 
+        biaya_service.setBackground(java.awt.SystemColor.controlHighlight);
+
         jLabel32.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(255, 255, 255));
         jLabel32.setText("Kode Barang");
+
+        kd_barang.setBackground(java.awt.SystemColor.controlHighlight);
 
         jLabel33.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(255, 255, 255));
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel33.setText(":");
 
+        bcari_sparepart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/search.png"))); // NOI18N
         bcari_sparepart.setText("CARI");
         bcari_sparepart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -854,6 +979,8 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel35.setText(":");
 
+        nama_barang.setBackground(java.awt.SystemColor.controlHighlight);
+
         jLabel36.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
         jLabel36.setText("Harga Beli");
@@ -862,6 +989,10 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         jLabel37.setForeground(new java.awt.Color(255, 255, 255));
         jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel37.setText(":");
+
+        harga_beli.setBackground(java.awt.SystemColor.controlHighlight);
+
+        harga_jual.setBackground(java.awt.SystemColor.controlHighlight);
 
         jLabel39.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel39.setForeground(new java.awt.Color(255, 255, 255));
@@ -875,6 +1006,8 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         jLabel40.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel40.setForeground(new java.awt.Color(255, 255, 255));
         jLabel40.setText("Merk Barang");
+
+        merk_barang.setBackground(java.awt.SystemColor.controlHighlight);
 
         jLabel41.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(255, 255, 255));
@@ -896,6 +1029,7 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
             }
         });
 
+        btambah_sparepart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/create.png"))); // NOI18N
         btambah_sparepart.setText("TAMBAH");
         btambah_sparepart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -917,6 +1051,8 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         jLabel52.setForeground(new java.awt.Color(255, 255, 255));
         jLabel52.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel52.setText(":");
+
+        subTotalSparepart.setBackground(java.awt.SystemColor.controlHighlight);
 
         javax.swing.GroupLayout detail_serviceLayout = new javax.swing.GroupLayout(detail_service);
         detail_service.setLayout(detail_serviceLayout);
@@ -985,7 +1121,7 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(qtySparepart, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(qtySparepart, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(detail_serviceLayout.createSequentialGroup()
                         .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1229,7 +1365,7 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         harga_beli.setText("");
         harga_jual.setText("");
         merk_barang.setText("");
-        qtySparepart.setText("");
+        qtySparepart.setText(PLACEHOLDER_QTY);
         subTotalSparepart.setText("");
         hitung();
     }//GEN-LAST:event_btambah_sparepartActionPerformed
@@ -1262,7 +1398,7 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         nama_aksesoris.setText("");
         harga_beliAk.setText("");
         harga_jualAk.setText("");
-        qtyAksesoris.setText("");
+        qtyAksesoris.setText(PLACEHOLDER_QTY);
         subTotalAksesoris.setText("");
         hitung();
     }//GEN-LAST:event_btambah_aksesorisActionPerformed
@@ -1313,12 +1449,13 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
             }
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
             cetak();
+            dispose();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Data gagal disimpan" + e);
         }
-        kosong();
-        aktif();
-        autonumber();
+//        kosong();
+//        aktif();
+//        autonumber();
     }//GEN-LAST:event_bsimpanActionPerformed
 
     private void bbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bbatalActionPerformed

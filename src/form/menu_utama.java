@@ -5,12 +5,6 @@
  */
 package form;
 
-import form_report.report_service;
-import form_report.report_pelanggan;
-import form_report.report_teknisi;
-import form_report.report_aksesoris;
-import form_report.report_sparepart;
-import java.sql.*;
 import javax.swing.JOptionPane;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -36,6 +30,7 @@ public class menu_utama extends javax.swing.JFrame {
         tampilkanWaktuSekarang();
         waktuBerjalan();
     }
+    
 
     private void tampilkanTanggal_hariini() {
         Date tanggalSaatIni = new Date();
@@ -111,7 +106,7 @@ public class menu_utama extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(102, 0, 153));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -137,7 +132,7 @@ public class menu_utama extends javax.swing.JFrame {
         jam_label.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jam_label.setText("Jam Hari Ini");
 
-        jPanel3.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel3.setBackground(new java.awt.Color(102, 0, 153));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -150,7 +145,7 @@ public class menu_utama extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel5.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel5.setBackground(new java.awt.Color(102, 0, 153));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -212,6 +207,7 @@ public class menu_utama extends javax.swing.JFrame {
         rep_teknisi.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         rep_teknisi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         rep_teknisi.setName(""); // NOI18N
+        rep_teknisi.setPreferredSize(new java.awt.Dimension(344, 35));
 
         master.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/teknisi.png"))); // NOI18N
         master.setText("Master |");
@@ -307,7 +303,7 @@ public class menu_utama extends javax.swing.JFrame {
 
         menu_rteknisi.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         menu_rteknisi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
-        menu_rteknisi.setText("Teknisi");
+        menu_rteknisi.setText("Data Teknisi");
         menu_rteknisi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menu_rteknisi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -318,7 +314,7 @@ public class menu_utama extends javax.swing.JFrame {
 
         menu_rpelanggan.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         menu_rpelanggan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
-        menu_rpelanggan.setText("Pelanggan");
+        menu_rpelanggan.setText("Data Pelanggan");
         menu_rpelanggan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menu_rpelanggan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,7 +325,7 @@ public class menu_utama extends javax.swing.JFrame {
 
         menu_rsparepart.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         menu_rsparepart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
-        menu_rsparepart.setText("Sparepart");
+        menu_rsparepart.setText("Data Sparepart");
         menu_rsparepart.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menu_rsparepart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -340,7 +336,7 @@ public class menu_utama extends javax.swing.JFrame {
 
         menu_raksesoris.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         menu_raksesoris.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
-        menu_raksesoris.setText("Aksesoris");
+        menu_raksesoris.setText("Data Aksesoris");
         menu_raksesoris.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menu_raksesoris.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -351,7 +347,7 @@ public class menu_utama extends javax.swing.JFrame {
 
         menu_rservice.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         menu_rservice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
-        menu_rservice.setText("Service");
+        menu_rservice.setText("Data Service");
         menu_rservice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menu_rservice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,7 +358,7 @@ public class menu_utama extends javax.swing.JFrame {
 
         riwayat_transaksi.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         riwayat_transaksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
-        riwayat_transaksi.setText("Riwayat Transaksi");
+        riwayat_transaksi.setText("Data Riwayat Transaksi");
         riwayat_transaksi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 riwayat_transaksiActionPerformed(evt);
