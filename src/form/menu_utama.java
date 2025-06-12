@@ -91,13 +91,13 @@ public class menu_utama extends javax.swing.JFrame {
         menu_service = new javax.swing.JMenuItem();
         transaksi = new javax.swing.JMenu();
         menu_pembayaran = new javax.swing.JMenuItem();
-        menu_garansi = new javax.swing.JMenuItem();
         report = new javax.swing.JMenu();
         menu_rteknisi = new javax.swing.JMenuItem();
         menu_rpelanggan = new javax.swing.JMenuItem();
         menu_rsparepart = new javax.swing.JMenuItem();
         menu_raksesoris = new javax.swing.JMenuItem();
         menu_rservice = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         riwayat_transaksi = new javax.swing.JMenuItem();
         keluar = new javax.swing.JMenu();
         menu_keluarakun = new javax.swing.JMenuItem();
@@ -288,12 +288,6 @@ public class menu_utama extends javax.swing.JFrame {
         });
         transaksi.add(menu_pembayaran);
 
-        menu_garansi.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        menu_garansi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/garansi.png"))); // NOI18N
-        menu_garansi.setText("Klaim Garansi");
-        menu_garansi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        transaksi.add(menu_garansi);
-
         rep_teknisi.add(transaksi);
 
         report.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
@@ -355,6 +349,16 @@ public class menu_utama extends javax.swing.JFrame {
             }
         });
         report.add(menu_rservice);
+
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
+        jMenuItem1.setText("Data Penjualan");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        report.add(jMenuItem1);
 
         riwayat_transaksi.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         riwayat_transaksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
@@ -508,6 +512,12 @@ public class menu_utama extends javax.swing.JFrame {
         rt.setLocationRelativeTo(null);
     }//GEN-LAST:event_riwayat_transaksiActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        form_report.report_penjualan rt = new form_report.report_penjualan();
+        rt.setVisible(true);
+        rt.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -548,6 +558,7 @@ public class menu_utama extends javax.swing.JFrame {
     private javax.swing.JLabel alamat_label;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
@@ -556,7 +567,6 @@ public class menu_utama extends javax.swing.JFrame {
     private javax.swing.JLabel label_selamatdatang;
     private javax.swing.JMenu master;
     private javax.swing.JMenuItem menu_aksesoris;
-    private javax.swing.JMenuItem menu_garansi;
     private javax.swing.JMenuItem menu_keluarakun;
     private javax.swing.JMenuItem menu_keluarapk;
     private javax.swing.JMenuItem menu_pelanggan;

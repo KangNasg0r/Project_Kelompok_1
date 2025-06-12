@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a83c2275-df02-4e1d-8580-1211d1efc7f0">
+	<property name="ireport.zoom" value="1.331000000000006"/>
+	<property name="ireport.x" value="254"/>
+	<property name="ireport.y" value="187"/>
+	<parameter name="TANGGAL_MULAI" class="java.lang.String"/>
+	<parameter name="TANGGAL_SELESAI" class="java.lang.String"/>
+	<parameter name="TEKNISI" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+    n.tanggal AS tanggal_penjualan,
+    CASE
+        WHEN SUBSTRING(d.id_item, 1, 1) = 'A' THEN 'Aksesoris'
+        WHEN SUBSTRING(d.id_item, 1, 2) = 'SP' THEN 'Sparepart'
+        WHEN SUBSTRING(d.id_item, 1, 1) = 'S' THEN 'Service'
+        ELSE 'Lain-lain'
+    END AS jenis_item,
+    SUM(CAST(d.kuantitas AS SIGNED)) AS total_kuantitas_terjual,
+    SUM(CAST(d.harga_jual AS SIGNED) * CAST(d.kuantitas AS SIGNED)) AS total_pendapatan_kotor, -- Pendapatan Kotor (Harga Jual * Kuantitas)
+    SUM(
+        (CAST(d.harga_jual AS SIGNED) - CAST(d.harga_beli AS SIGNED)) * CAST(d.kuantitas AS SIGNED)
+    ) AS total_pendapatan_bersih -- Pendapatan Bersih (Profit: (Harga Jual - Harga Beli) * Kuantitas)
+FROM
+    tb_nota_detail d
+JOIN
+    tb_nota n ON d.id_nota = n.id_nota
+WHERE
+    n.tanggal BETWEEN $P{TANGGAL_MULAI} AND $P{TANGGAL_SELESAI}
+GROUP BY
+    n.tanggal,
+    jenis_item
+ORDER BY
+    n.tanggal,
+    jenis_item;]]>
+	</queryString>
+	<field name="tanggal_penjualan" class="java.sql.Date"/>
+	<field name="jenis_item" class="java.lang.String"/>
+	<field name="total_kuantitas_terjual" class="java.math.BigDecimal"/>
+	<field name="total_pendapatan_kotor" class="java.math.BigDecimal"/>
+	<field name="total_pendapatan_bersih" class="java.math.BigDecimal"/>
+	<variable name="total" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_pendapatan_kotor}]]></variableExpression>
+	</variable>
+	<variable name="keuntungan_bersih" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_pendapatan_bersih}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="115" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="702" height="66" uuid="acf42aa0-b2c3-4abd-8382-134231016b10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="40" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL PENDAPATAN GADGET HOUSE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="110" width="802" height="1" uuid="6b4abb18-9d43-410f-80da-f70ccd4905da"/>
+				<graphicElement>
+					<pen lineWidth="3.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement x="702" y="0" width="100" height="100" uuid="b2a706dd-180a-4e4a-8307-b0546bb3e3d9"/>
+				<imageExpression><![CDATA["../gambar/menu_logo_1.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="66" width="702" height="40" uuid="530d35b6-9e40-4463-bdce-1b1d5178fad8"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Calibri" size="17"/>
+				</textElement>
+				<text><![CDATA[Jl. Raya Tengah No.80, RT.6/RW.1, Daerah Khusus Ibukota Jakarta 13760, Indonesia]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="434">
+			<textField>
+				<reportElement x="171" y="0" width="88" height="20" uuid="3ac7ae86-22ff-4cb3-b707-78edf95bc3d6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TANGGAL_MULAI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="299" y="0" width="91" height="20" uuid="75a65b50-06d3-414c-9d8a-f0276a68a947"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TANGGAL_SELESAI}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="153" height="20" uuid="7d4fc60e-dd6b-4efc-b4e3-94c71e941684"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Berdasarkan Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="259" y="0" width="40" height="20" uuid="d8939ea1-4d06-49d7-afaf-ebcb5d1c49e5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[s.d]]></text>
+			</staticText>
+			<barChart>
+				<chart theme="default">
+					<reportElement x="0" y="96" width="802" height="333" uuid="bc5eccac-4760-4e59-b92e-a1447f8bf3ee"/>
+					<chartTitle>
+						<font size="18" isBold="true"/>
+						<titleExpression><![CDATA["Keuntungan Bersih Harian"]]></titleExpression>
+					</chartTitle>
+					<chartSubtitle>
+						<font size="10" isBold="true"/>
+					</chartSubtitle>
+					<chartLegend position="Right">
+						<font size="12" isBold="true"/>
+					</chartLegend>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{jenis_item}]]></seriesExpression>
+						<categoryExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{tanggal_penjualan})]]></categoryExpression>
+						<valueExpression><![CDATA[$F{total_pendapatan_bersih}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel>
+						<font size="12" isBold="true"/>
+					</itemLabel>
+					<categoryAxisLabelExpression><![CDATA["Tanggal"]]></categoryAxisLabelExpression>
+					<categoryAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font size="12" isBold="true"/>
+							</labelFont>
+							<tickLabelFont>
+								<font isBold="true"/>
+							</tickLabelFont>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisLabelExpression><![CDATA["Keuntungan (Rp)"]]></valueAxisLabelExpression>
+					<valueAxisFormat>
+						<axisFormat>
+							<labelFont>
+								<font size="12" isBold="true"/>
+							</labelFont>
+							<tickLabelFont>
+								<font fontName="Arial" size="12" isBold="true"/>
+							</tickLabelFont>
+						</axisFormat>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="171" y="28" width="191" height="20" uuid="06d51ea5-6cca-4c78-8119-e1c0dd537d5a"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="28" width="153" height="20" uuid="f811d001-f1d6-41e4-b733-3880e6cee034"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Pendapatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="0" width="18" height="20" uuid="6d6cef2b-0f54-4579-b87c-a8eeb6a0262b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="28" width="18" height="20" uuid="5a6dc0bc-c762-4270-8e71-34b23fdaa97a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="592" y="0" width="210" height="20" uuid="7fc2ccdf-d21e-4acd-85ac-abc8b305fdb3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TEKNISI}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="451" y="0" width="123" height="20" uuid="ac2d3b6f-c6d7-4a29-9488-edf5e1f85f4d"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dikeluarkan Oleh]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="592" y="28" width="210" height="20" uuid="8db58df1-35e6-4225-bae2-2d916468830a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Teknisi Gadget House]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="451" y="28" width="123" height="20" uuid="37739cd4-2319-4386-8b81-556af708c01f"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jabatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="574" y="0" width="18" height="20" uuid="d154e94c-e1b9-4e55-a4ad-33d6e8db2a1e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="574" y="28" width="18" height="20" uuid="ce13c68f-e4e8-4a41-87da-5664bc32aef1"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="59" width="153" height="20" uuid="6e259455-871e-4eae-8b96-ca7b381608db"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Keuntungan Bersih]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="153" y="59" width="18" height="20" uuid="69800b8e-b296-4711-b17b-2dfb2b826a2b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="171" y="59" width="191" height="20" uuid="88ea08b4-8c73-40b1-bec8-04f3d7a5f474"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{keuntungan_bersih}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="451" y="59" width="123" height="20" uuid="78a312d9-4a2b-413f-bfff-112391b89175"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hari Ini]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="574" y="59" width="18" height="20" uuid="10b9a4d8-506e-4de2-8bf5-928a2b703ff7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="592" y="59" width="210" height="20" uuid="0c51e281-dc1d-4a2f-a6c9-6af3caa43b37"/>
+				<textElement>
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="89" width="802" height="1" uuid="3edfe544-bedc-4501-961f-be74198b3e93"/>
+				<graphicElement>
+					<pen lineWidth="3.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

@@ -363,7 +363,7 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
 
         nota.setBackground(new java.awt.Color(102, 102, 255));
 
-        nota_pembayaran.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        nota_pembayaran.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         nota_pembayaran.setForeground(new java.awt.Color(255, 255, 255));
         nota_pembayaran.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nota_pembayaran.setText("NOTA PEMBAYARAN SERVICE GADGET");
@@ -731,10 +731,9 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
                                 .addGroup(detail_aksesorisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(subTotalAksesoris)
                                     .addGroup(detail_aksesorisLayout.createSequentialGroup()
-                                        .addGroup(detail_aksesorisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btambah_aksesoris)
-                                            .addComponent(qtyAksesoris, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                                        .addComponent(qtyAksesoris, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(btambah_aksesoris, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(detail_aksesorisLayout.createSequentialGroup()
                         .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -823,17 +822,17 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         jLabel17.setText(":");
 
         id_pelanggan.setBackground(java.awt.SystemColor.controlHighlight);
-        id_pelanggan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        id_pelanggan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         nama_pelanggan.setBackground(java.awt.SystemColor.controlHighlight);
-        nama_pelanggan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nama_pelanggan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         hp_pelanggan.setBackground(java.awt.SystemColor.controlHighlight);
-        hp_pelanggan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        hp_pelanggan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         almt_pelanggan.setBackground(java.awt.SystemColor.controlHighlight);
         almt_pelanggan.setColumns(20);
-        almt_pelanggan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        almt_pelanggan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         almt_pelanggan.setRows(5);
         jScrollPane1.setViewportView(almt_pelanggan);
 
@@ -1129,9 +1128,7 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
                         .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(detail_serviceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(detail_serviceLayout.createSequentialGroup()
-                                .addComponent(btambah_sparepart)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(btambah_sparepart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(subTotalSparepart))))
                 .addContainerGap())
         );

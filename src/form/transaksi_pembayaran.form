@@ -118,7 +118,7 @@
         <Component class="javax.swing.JLabel" name="nota_pembayaran">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="24" style="1"/>
+              <Font name="Tahoma" size="36" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -693,12 +693,10 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="subTotalAksesoris" max="32767" attributes="0"/>
                                               <Group type="102" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="btambah_aksesoris" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="qtyAksesoris" alignment="0" min="-2" pref="171" max="-2" attributes="0"/>
-                                                  </Group>
+                                                  <Component id="qtyAksesoris" min="-2" pref="171" max="-2" attributes="0"/>
                                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               </Group>
+                                              <Component id="btambah_aksesoris" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -1162,7 +1160,7 @@
                       <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="12" style="1"/>
+                      <Font name="Tahoma" size="12" style="0"/>
                     </Property>
                   </Properties>
                   <AuxValues>
@@ -1175,7 +1173,7 @@
                       <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="12" style="1"/>
+                      <Font name="Tahoma" size="12" style="0"/>
                     </Property>
                   </Properties>
                   <AuxValues>
@@ -1188,7 +1186,7 @@
                       <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
                     </Property>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="12" style="1"/>
+                      <Font name="Tahoma" size="12" style="0"/>
                     </Property>
                   </Properties>
                   <AuxValues>
@@ -1209,7 +1207,7 @@
                         </Property>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Tahoma" size="12" style="1"/>
+                          <Font name="Tahoma" size="12" style="0"/>
                         </Property>
                         <Property name="rows" type="int" value="5"/>
                       </Properties>
@@ -1341,10 +1339,7 @@
                                   <Component id="jLabel52" min="-2" pref="19" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="btambah_sparepart" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      </Group>
+                                      <Component id="btambah_sparepart" max="32767" attributes="0"/>
                                       <Component id="subTotalSparepart" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
