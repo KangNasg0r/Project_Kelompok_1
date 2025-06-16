@@ -102,8 +102,8 @@ private Connection conn = new koneksi().connect();
                 totalPendapatanKeseluruhan += subtotal;
                 totalPendapatanBersih += subtotalbersih;
             }
-           label_total_pendapatan.setText(String.format("%,d", totalPendapatanKeseluruhan));
-           label_total_pendapatan_bersih.setText(String.format("%,d", totalPendapatanBersih));
+           label_total_pendapatan.setText(String.format("Rp "+"%,d", totalPendapatanKeseluruhan));
+           label_total_pendapatan_bersih.setText(String.format("Rp "+"%,d", totalPendapatanBersih));
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Gagal memuat data penjualan: " + e.getMessage(), "Error Database", JOptionPane.ERROR_MESSAGE);
@@ -315,12 +315,13 @@ private Connection conn = new koneksi().connect();
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(tanggal_mulai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tanggal_selesai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bcari))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(tanggal_mulai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tanggal_selesai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bcari)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())

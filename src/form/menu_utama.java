@@ -106,7 +106,7 @@ public class menu_utama extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        jPanel1.setBackground(new java.awt.Color(102, 0, 153));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 95));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,7 +132,7 @@ public class menu_utama extends javax.swing.JFrame {
         jam_label.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jam_label.setText("Jam Hari Ini");
 
-        jPanel3.setBackground(new java.awt.Color(102, 0, 153));
+        jPanel3.setBackground(new java.awt.Color(51, 51, 95));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -145,7 +145,7 @@ public class menu_utama extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel5.setBackground(new java.awt.Color(102, 0, 153));
+        jPanel5.setBackground(new java.awt.Color(51, 51, 95));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
