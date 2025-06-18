@@ -61,8 +61,8 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtcari" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
-                              <Component id="jLabel13" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="txtcari" min="-2" pref="119" max="-2" attributes="0"/>
+                              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -543,7 +543,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Cari :"/>
+            <Property name="text" type="java.lang.String" value="Cari ID :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel14">
