@@ -397,7 +397,7 @@ public class master_teknisi extends javax.swing.JFrame {
 
         bprint_tek.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         bprint_tek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
-        bprint_tek.setText("PRINT");
+        bprint_tek.setText("CETAK");
         bprint_tek.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bprint_tek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

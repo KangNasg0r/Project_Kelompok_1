@@ -21,6 +21,7 @@ public class registrasi extends javax.swing.JFrame {
 
     public registrasi() {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         alamat.setLineWrap(true);
         alamat.setWrapStyleWord(true);
     }
@@ -77,6 +78,7 @@ public class registrasi extends javax.swing.JFrame {
             }
         });
 
+        bregis.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         bregis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/save.png"))); // NOI18N
         bregis.setText("SIMPAN");
         bregis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -91,6 +93,7 @@ public class registrasi extends javax.swing.JFrame {
             }
         });
 
+        bback.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         bback.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/back.png"))); // NOI18N
         bback.setText("KEMBALI");
         bback.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

@@ -120,6 +120,8 @@ public class master_service extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Biaya Service (Rp) :");
 
+        bsimpan.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bsimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/save.png"))); // NOI18N
         bsimpan.setText("SIMPAN");
         bsimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,6 +129,8 @@ public class master_service extends javax.swing.JFrame {
             }
         });
 
+        bubah.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bubah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/edit.png"))); // NOI18N
         bubah.setText("UBAH");
         bubah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,6 +138,8 @@ public class master_service extends javax.swing.JFrame {
             }
         });
 
+        bhapus.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bhapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/delete.png"))); // NOI18N
         bhapus.setText("HAPUS");
         bhapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,6 +147,8 @@ public class master_service extends javax.swing.JFrame {
             }
         });
 
+        bbatal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bbatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/cancel.png"))); // NOI18N
         bbatal.setText("BATAL");
         bbatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,6 +156,8 @@ public class master_service extends javax.swing.JFrame {
             }
         });
 
+        bkeluar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bkeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/back.png"))); // NOI18N
         bkeluar.setText("KEMBALI");
         bkeluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,6 +277,8 @@ public class master_service extends javax.swing.JFrame {
             }
         });
 
+        cari_service.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cari_service.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/search.png"))); // NOI18N
         cari_service.setText("CARI");
         cari_service.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -276,7 +288,7 @@ public class master_service extends javax.swing.JFrame {
 
         bprint_ser.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         bprint_ser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
-        bprint_ser.setText("PRINT");
+        bprint_ser.setText("CETAK");
         bprint_ser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bprint_ser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -291,7 +303,7 @@ public class master_service extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

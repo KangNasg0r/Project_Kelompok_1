@@ -94,6 +94,7 @@ private Connection conn = new koneksi().connect();
         table_aksesoris = new javax.swing.JTable();
         txtcari = new javax.swing.JTextField();
         cari_aksesoris = new javax.swing.JButton();
+        bprint_pel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,6 +118,8 @@ private Connection conn = new koneksi().connect();
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Harga Beli (Rp) :");
 
+        bsimpan.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bsimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/save.png"))); // NOI18N
         bsimpan.setText("SIMPAN");
         bsimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +127,8 @@ private Connection conn = new koneksi().connect();
             }
         });
 
+        bubah.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bubah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/edit.png"))); // NOI18N
         bubah.setText("UBAH");
         bubah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +136,8 @@ private Connection conn = new koneksi().connect();
             }
         });
 
+        bhapus.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bhapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/delete.png"))); // NOI18N
         bhapus.setText("HAPUS");
         bhapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +145,8 @@ private Connection conn = new koneksi().connect();
             }
         });
 
+        bbatal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bbatal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/cancel.png"))); // NOI18N
         bbatal.setText("BATAL");
         bbatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,6 +154,8 @@ private Connection conn = new koneksi().connect();
             }
         });
 
+        bkeluar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bkeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/back.png"))); // NOI18N
         bkeluar.setText("KEMBALI");
         bkeluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,7 +237,7 @@ private Connection conn = new koneksi().connect();
         panel_kiri.setLayout(panel_kiriLayout);
         panel_kiriLayout.setHorizontalGroup(
             panel_kiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 103, Short.MAX_VALUE)
+            .addGap(0, 42, Short.MAX_VALUE)
         );
         panel_kiriLayout.setVerticalGroup(
             panel_kiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,7 +250,7 @@ private Connection conn = new koneksi().connect();
         panel_kanan.setLayout(panel_kananLayout);
         panel_kananLayout.setHorizontalGroup(
             panel_kananLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 103, Short.MAX_VALUE)
+            .addGap(0, 42, Short.MAX_VALUE)
         );
         panel_kananLayout.setVerticalGroup(
             panel_kananLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,10 +287,21 @@ private Connection conn = new koneksi().connect();
             }
         });
 
+        cari_aksesoris.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cari_aksesoris.setText("CARI");
         cari_aksesoris.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cari_aksesorisActionPerformed(evt);
+            }
+        });
+
+        bprint_pel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bprint_pel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
+        bprint_pel.setText("CETAK");
+        bprint_pel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bprint_pel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bprint_pelActionPerformed(evt);
             }
         });
 
@@ -290,12 +312,13 @@ private Connection conn = new koneksi().connect();
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cari_aksesoris)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bprint_pel))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -304,10 +327,11 @@ private Connection conn = new koneksi().connect();
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cari_aksesoris))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addComponent(cari_aksesoris)
+                    .addComponent(bprint_pel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout Panel_ServiceLayout = new javax.swing.GroupLayout(Panel_Service);
@@ -498,6 +522,12 @@ private Connection conn = new koneksi().connect();
         datatable();
     }//GEN-LAST:event_txtcariKeyTyped
 
+    private void bprint_pelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bprint_pelActionPerformed
+        form_report.report_pelanggan rp = new form_report.report_pelanggan();
+        rp.setVisible(true);
+        rp.setLocationRelativeTo(null);    // TODO add your handling code here:
+    }//GEN-LAST:event_bprint_pelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -538,6 +568,7 @@ private Connection conn = new koneksi().connect();
     private javax.swing.JButton bbatal;
     private javax.swing.JButton bhapus;
     private javax.swing.JButton bkeluar;
+    private javax.swing.JButton bprint_pel;
     private javax.swing.JButton bsimpan;
     private javax.swing.JButton bubah;
     private javax.swing.JButton cari_aksesoris;
