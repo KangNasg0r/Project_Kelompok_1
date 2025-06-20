@@ -116,7 +116,7 @@ public class report_service extends javax.swing.JFrame {
         });
 
         bprint_ser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
-        bprint_ser.setText("PRINT");
+        bprint_ser.setText("CETAK");
         bprint_ser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bprint_ser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

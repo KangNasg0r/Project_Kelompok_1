@@ -188,6 +188,7 @@ private Connection conn = new koneksi().connect();
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tanggal Akhir :");
 
+        bcari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/search.png"))); // NOI18N
         bcari.setText("CARI DATA");
         bcari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -219,6 +220,7 @@ private Connection conn = new koneksi().connect();
         label_total_pendapatan.setForeground(new java.awt.Color(255, 255, 255));
         label_total_pendapatan.setText("---------------------------------------");
 
+        bcetak_chart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
         bcetak_chart.setText("CETAK");
         bcetak_chart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,7 +307,7 @@ private Connection conn = new koneksi().connect();
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tanggal_selesai, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 357, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
                         .addComponent(bcari)))
                 .addContainerGap())
         );

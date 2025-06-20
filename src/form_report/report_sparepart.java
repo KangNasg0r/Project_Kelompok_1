@@ -124,7 +124,7 @@ public class report_sparepart extends javax.swing.JFrame {
         });
 
         bprint_sp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
-        bprint_sp.setText("PRINT");
+        bprint_sp.setText("CETAK");
         bprint_sp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bprint_sp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -128,7 +128,7 @@ public class report_pelanggan extends javax.swing.JFrame {
         });
 
         bprint_pel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
-        bprint_pel.setText("PRINT");
+        bprint_pel.setText("CETAK");
         bprint_pel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bprint_pel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

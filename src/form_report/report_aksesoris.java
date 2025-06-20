@@ -122,7 +122,7 @@ public class report_aksesoris extends javax.swing.JFrame {
         });
 
         bprint_ak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/printer.png"))); // NOI18N
-        bprint_ak.setText("PRINT");
+        bprint_ak.setText("CETAK");
         bprint_ak.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bprint_ak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
