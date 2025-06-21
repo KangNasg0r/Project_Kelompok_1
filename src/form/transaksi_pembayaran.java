@@ -1446,7 +1446,11 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
             }
             JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
             cetak();
-            dispose();
+            aktif();
+            kosong();
+            
+            autonumber();
+            
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Data gagal disimpan" + e);
         }
