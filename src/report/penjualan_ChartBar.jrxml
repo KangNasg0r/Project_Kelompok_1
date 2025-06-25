@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a83c2275-df02-4e1d-8580-1211d1efc7f0">
-	<property name="ireport.zoom" value="1.331000000000006"/>
-	<property name="ireport.x" value="254"/>
-	<property name="ireport.y" value="187"/>
+	<property name="ireport.zoom" value="0.826446280991739"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="TANGGAL_MULAI" class="java.lang.String"/>
 	<parameter name="TANGGAL_SELESAI" class="java.lang.String"/>
 	<parameter name="TEKNISI" class="java.lang.String"/>
@@ -152,7 +152,7 @@ ORDER BY
 					</valueAxisFormat>
 				</barPlot>
 			</barChart>
-			<textField pattern="¤ #,##0.00">
+			<textField pattern="Rp  #,##0.00">
 				<reportElement x="171" y="28" width="191" height="20" uuid="06d51ea5-6cca-4c78-8119-e1c0dd537d5a"/>
 				<textElement>
 					<font fontName="Arial" size="14" isBold="false"/>
@@ -236,7 +236,7 @@ ORDER BY
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
-			<textField pattern="¤ #,##0.00">
+			<textField pattern="Rp  #,##0.00">
 				<reportElement x="171" y="59" width="191" height="20" uuid="88ea08b4-8c73-40b1-bec8-04f3d7a5f474"/>
 				<textElement>
 					<font fontName="Arial" size="14"/>

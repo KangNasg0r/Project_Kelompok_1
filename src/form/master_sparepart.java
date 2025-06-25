@@ -625,7 +625,10 @@ public class master_sparepart extends javax.swing.JFrame {
     }//GEN-LAST:event_bubahActionPerformed
 
     private void bkeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bkeluarActionPerformed
-        dispose();
+        menu_utama ma = new menu_utama();
+        ma.setVisible(true);
+        ma.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_bkeluarActionPerformed
 
     private void bprint_spareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bprint_spareActionPerformed

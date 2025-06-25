@@ -106,7 +106,7 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$F{jenis_service}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" pattern="¤ #,##0.00">
+				<textField isStretchWithOverflow="true" pattern="Rp  #,##0.00">
 					<reportElement style="Detail" positionType="Float" x="370" y="0" width="171" height="18" uuid="bbf63851-8fe6-4b4d-906d-4c5e968ec134"/>
 					<textElement textAlignment="Center">
 						<font size="14"/>

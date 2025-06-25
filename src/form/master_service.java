@@ -381,9 +381,9 @@ public class master_service extends javax.swing.JFrame {
             return false;
         }
     }
-    
+
     private void bsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsimpanActionPerformed
-    String idText = id_service.getText().trim(); // Trim untuk menghapus spasi di awal dan akhir
+        String idText = id_service.getText().trim(); // Trim untuk menghapus spasi di awal dan akhir
         String jenisText = jenis_service.getText().trim();
         String biayaText = biaya_service.getText().trim();
         if (idText.isEmpty() || jenisText.isEmpty() || biayaText.isEmpty()) {
@@ -416,7 +416,7 @@ public class master_service extends javax.swing.JFrame {
     }//GEN-LAST:event_bsimpanActionPerformed
 
     private void bubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bubahActionPerformed
-    String idText = id_service.getText().trim(); // Trim untuk menghapus spasi di awal dan akhir
+        String idText = id_service.getText().trim(); // Trim untuk menghapus spasi di awal dan akhir
         String jenisText = jenis_service.getText().trim();
         String biayaText = biaya_service.getText().trim();
         if (idText.isEmpty() || jenisText.isEmpty() || biayaText.isEmpty()) {
@@ -448,7 +448,7 @@ public class master_service extends javax.swing.JFrame {
     }//GEN-LAST:event_bubahActionPerformed
 
     private void bhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhapusActionPerformed
-    String idText = id_service.getText().trim();
+        String idText = id_service.getText().trim();
         if (idText.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Kode Barang belum diisi.", "Peringatan", JOptionPane.WARNING_MESSAGE);
             return;
@@ -474,16 +474,19 @@ public class master_service extends javax.swing.JFrame {
     }//GEN-LAST:event_bhapusActionPerformed
 
     private void bbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bbatalActionPerformed
-     kosong();
+        kosong();
         datatable();
     }//GEN-LAST:event_bbatalActionPerformed
 
     private void bkeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bkeluarActionPerformed
-    dispose();
+        menu_utama ma = new menu_utama();
+        ma.setVisible(true);
+        ma.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_bkeluarActionPerformed
 
     private void table_serviceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_serviceMouseClicked
-    int bar = table_service.getSelectedRow();
+        int bar = table_service.getSelectedRow();
         String a = tabmode.getValueAt(bar, 0).toString();
         String b = tabmode.getValueAt(bar, 1).toString();
         String c = tabmode.getValueAt(bar, 2).toString();
@@ -494,13 +497,13 @@ public class master_service extends javax.swing.JFrame {
     }//GEN-LAST:event_table_serviceMouseClicked
 
     private void txtcariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcariKeyPressed
-    if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             datatable();
         }
     }//GEN-LAST:event_txtcariKeyPressed
 
     private void cari_serviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cari_serviceActionPerformed
-    datatable();
+        datatable();
     }//GEN-LAST:event_cari_serviceActionPerformed
 
     private void bprint_serActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bprint_serActionPerformed

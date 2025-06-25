@@ -642,7 +642,6 @@ public class master_teknisi extends javax.swing.JFrame {
             return;
         }
 
-        
         String sql = "UPDATE tb_login SET sandi=?, nama=?, jenkel=?, hp=?, alamat=? WHERE id_teknisi=?"; // Perhatikan penggunaan UPDATE
         try {
             PreparedStatement stat = conn.prepareStatement(sql);
@@ -672,7 +671,10 @@ public class master_teknisi extends javax.swing.JFrame {
     }//GEN-LAST:event_bbatalActionPerformed
 
     private void bkeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bkeluarActionPerformed
-        dispose();
+        menu_utama ma = new menu_utama();
+        ma.setVisible(true);
+        ma.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_bkeluarActionPerformed
 
     private void bprint_tekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bprint_tekActionPerformed

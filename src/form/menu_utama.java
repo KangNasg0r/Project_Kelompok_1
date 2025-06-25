@@ -436,13 +436,15 @@ public class menu_utama extends javax.swing.JFrame {
     private void menu_rteknisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_rteknisiActionPerformed
         form_report.report_teknisi rk = new form_report.report_teknisi();
         rk.setVisible(true);
-        rk.setLocationRelativeTo(null);     // TODO add your handling code here:
+        rk.setLocationRelativeTo(null); 
+        // TODO add your handling code here:
     }//GEN-LAST:event_menu_rteknisiActionPerformed
 
     private void menu_teknisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_teknisiActionPerformed
         master_teknisi mt = new master_teknisi();
         mt.setVisible(true);
-        mt.setLocationRelativeTo(null);    // TODO add your handling code here:
+        mt.setLocationRelativeTo(null);
+        this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_menu_teknisiActionPerformed
 
     private void menu_keluarapkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_keluarapkActionPerformed
@@ -455,31 +457,36 @@ public class menu_utama extends javax.swing.JFrame {
     private void menu_raksesorisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_raksesorisActionPerformed
         form_report.report_aksesoris rak = new form_report.report_aksesoris();
         rak.setVisible(true);
-        rak.setLocationRelativeTo(null);    // TODO add your handling code here:
+        rak.setLocationRelativeTo(null);
+        this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_menu_raksesorisActionPerformed
 
     private void menu_pelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_pelangganActionPerformed
         master_pelanggan mp = new master_pelanggan();
         mp.setVisible(true);
         mp.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_menu_pelangganActionPerformed
 
     private void menu_sparepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_sparepartActionPerformed
         master_sparepart ms = new master_sparepart();
         ms.setVisible(true);
-        ms.setLocationRelativeTo(null);    // TODO add your handling code here:
+        ms.setLocationRelativeTo(null);
+        this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_menu_sparepartActionPerformed
 
     private void menu_aksesorisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_aksesorisActionPerformed
         master_aksesoris ma = new master_aksesoris();
         ma.setVisible(true);
         ma.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_menu_aksesorisActionPerformed
 
     private void menu_serviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_serviceActionPerformed
         master_service mser = new master_service();
         mser.setVisible(true);
         mser.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_menu_serviceActionPerformed
 
     private void menu_rpelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_rpelangganActionPerformed

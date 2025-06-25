@@ -698,7 +698,10 @@ public class master_pelanggan extends javax.swing.JFrame {
     }//GEN-LAST:event_bbatalActionPerformed
 
     private void bkeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bkeluarActionPerformed
-        dispose();
+        menu_utama ma = new menu_utama();
+        ma.setVisible(true);
+        ma.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_bkeluarActionPerformed
 
     private void cari_pelangganKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cari_pelangganKeyTyped
