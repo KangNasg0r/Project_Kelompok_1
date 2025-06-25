@@ -169,6 +169,7 @@ private Connection conn = new koneksi().connect();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        bkembali = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -290,6 +291,14 @@ private Connection conn = new koneksi().connect();
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        bkembali.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/back.png"))); // NOI18N
+        bkembali.setText("KEMBALI");
+        bkembali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bkembaliActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -307,8 +316,10 @@ private Connection conn = new koneksi().connect();
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tanggal_selesai, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
-                        .addComponent(bcari)))
+                        .addGap(18, 18, 18)
+                        .addComponent(bcari)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
+                        .addComponent(bkembali)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -322,7 +333,8 @@ private Connection conn = new koneksi().connect();
                     .addComponent(tanggal_mulai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tanggal_selesai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bcari)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(bkembali))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -370,6 +382,10 @@ private Connection conn = new koneksi().connect();
         }
     }//GEN-LAST:event_bcariActionPerformed
 
+    private void bkembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bkembaliActionPerformed
+        dispose();
+    }//GEN-LAST:event_bkembaliActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -408,6 +424,7 @@ private Connection conn = new koneksi().connect();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bcari;
     private javax.swing.JButton bcetak_chart;
+    private javax.swing.JButton bkembali;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

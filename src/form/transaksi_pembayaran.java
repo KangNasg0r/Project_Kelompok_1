@@ -45,7 +45,9 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         aktif();
         kosong();
         tampilkanIdTeknisi();
-        tampilkanNamaTeknisi();
+        String teknisi = UserID.getNamaTeknisi();
+        label_namaTeknisi.setText(teknisi);
+//        tampilkanNamaTeknisi();
         almt_pelanggan.setLineWrap(true);
         almt_pelanggan.setWrapStyleWord(true);
         autonumber();
@@ -141,10 +143,10 @@ public class transaksi_pembayaran extends javax.swing.JFrame {
         label_idTeknisi.setText(idTeknisi);
     }
 
-    private void tampilkanNamaTeknisi() {
-        String namaTeknisi = UserID.getNamaTeknisi();
-        label_namaTeknisi.setText(namaTeknisi);
-    }
+//    private void tampilkanNamaTeknisi() {
+//        String namaTeknisi = UserID.getNamaTeknisi();
+//        label_namaTeknisi.setText(namaTeknisi);
+//    }
 
     public void itemTerpilihPlgn() {
         poppup_pelanggan pp = new poppup_pelanggan();
